@@ -1030,7 +1030,7 @@ label,
 .home-product-item {
     display: block;
     position: relative;
-    text-decoration: none;
+    text-decoration: none !important;
     background-color: #fff;
     margin-top: 10px;
     border-bottom-left-radius: 2px;
@@ -1043,6 +1043,7 @@ label,
 .home-product-item:hover {
     transform: translateY(-1px);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    text-decoration: none;
 }
 
 .home-product-item__img {

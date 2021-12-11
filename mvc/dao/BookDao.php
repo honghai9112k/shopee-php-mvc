@@ -1,6 +1,7 @@
 <?php
 require_once "./mvc/implement/Book_Implement.php";
 require_once "./mvc/models/BookModel.php";
+require_once "./mvc/models/BookItemModel.php";
 
 class BookDao extends DB implements Book_Implement
 {
@@ -16,7 +17,7 @@ class BookDao extends DB implements Book_Implement
         $qr = "SELECT * FROM book";
         $result =  mysqli_query($this->con, $qr);
         // $list_books = mysqli_fetch_array($result);
-         $list_books = $result;
+        $list_books = $result;
 
         $list = array();
         foreach ($list_books as $book) {
@@ -35,6 +36,78 @@ class BookDao extends DB implements Book_Implement
         }
         return $list;
     }
-}
 
-?>
+    public function createBook(BookModel $newBook, BookItemModel $newBookItem, $authorId)
+    {
+        $result = false;
+
+        $bookCategoryId = $newBook->getBookCategoryId();
+        $publisherId = $newBook->getPublisherId();
+        $isbn = $newBook->getISBN();
+        $title = $newBook->getTitle();
+        $summary = $newBook->getSummary();
+        $publicationDate = $newBook->getPublicationDate();
+        $numberOfPage = $newBook->getNumberOfPage();
+        $language = $newBook->getLanguage();
+        $soldNumber = $newBook->getSoldNumber();
+        $price = $newBookItem->getPrice();
+        $barcode = $newBookItem->getBarcode();
+        $discount = $newBookItem->getDiscount();
+        $image = $newBookItem->getImage();
+        $description = $newBookItem->getDescription();
+
+        $qr_book = "INSERT INTO book (Id_book, BookCategoryId, PublisherId, ISBN, Title, Summary, PublicationDate, NumberOfPage, Language, SoldNumber) 
+                 VALUES (NULL, '$bookCategoryId', '$publisherId', '$isbn', '$title', '$summary', '$publicationDate', '$numberOfPage', '$language', '$soldNumber')";
+        $result =  mysqli_query($this->con, $qr_book);
+
+
+        if ($result ) {
+            // Lấy ra id customer vừa thêm
+            $idMaxQuery = mysqli_query($this->con, "SELECT MAX(Id_book) as maxidBook FROM book;");
+            $idmaxBook = mysqli_fetch_assoc($idMaxQuery)['maxidBook'];
+            $newBook->setId_book($idmaxBook);
+
+
+            $qr_bookauthor = "INSERT INTO book_author (BookId, AuthorId) VALUES ('$idmaxBook', '$authorId')";
+            $qr =  mysqli_query($this->con, $qr_bookauthor);
+
+            $qr_bookitem = "INSERT INTO bookitem (Id_bookItem, BookId, Price, Barcode, Discount, Image, Description)
+             VALUES (NULL, '$idmaxBook', '$price', '$barcode', '$discount', '$image', '$description')";
+            $rs =  mysqli_query($this->con, $qr_bookitem);
+            if ($rs && $qr) {
+                $result = true;
+            }
+        }
+        return json_encode($result);
+    }
+
+
+
+    // Lấy ra tất cả các Publisher
+    public function GetAllPublisher()
+    {
+        $sql = "SELECT * FROM publisher";
+        $query = mysqli_query($this->con, $sql);
+        $data = mysqli_fetch_assoc($query);
+        $_SESSION['publisher'] = $query;
+        return $query;
+    }
+    // Lấy ra tất cả các bookCategory
+    public function GetAllBookCategory()
+    {
+        $sql = "SELECT * FROM bookcategory";
+        $query = mysqli_query($this->con, $sql);
+        $data = mysqli_fetch_assoc($query);
+        $_SESSION['bookcategory'] = $query;
+        return $query;
+    }
+    // Lấy ra tất cả các author
+    public function GetAllAuthor()
+    {
+        $sql = "SELECT * FROM author";
+        $query = mysqli_query($this->con, $sql);
+        $data = mysqli_fetch_assoc($query);
+        $_SESSION['author'] = $query;
+        return $query;
+    }
+}

@@ -41,15 +41,15 @@ class BookModel implements JsonSerializable {
     {
         return [
             'id_book' => $this->id_book,
+            'bookCategoryId' => $this->bookCategoryId,
+            'publisherId' => $this->publisherId,
             'ISBN' => $this->ISBN,
             'title' => $this->title,
             'summary' => $this->summary,
             'publicationDate' => $this->publicationDate,
             'numberOfPage' =>  $this->numberOfPage,
             'language' =>  $this->language,
-            'soldNumber' =>  $this->soldNumber,
-            'bookCategoryId' => $this->bookCategoryId,
-            'publisherId' => $this->publisherId,
+            'soldNumber' =>  $this->soldNumber
         ];
     }
     

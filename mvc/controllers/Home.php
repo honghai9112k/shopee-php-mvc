@@ -1,6 +1,7 @@
 <?php
 require_once "./mvc/models/CustomerModel.php";
 require_once "./mvc/models/AccountModel.php";
+require_once "./mvc/models/AddressModel.php";
 // http://localhost/bookstore-mvc/Home/Show/1/2
 // http://localhost/bookstore-mvc/Home
 // http://localhost/bookstore-mvc/Home/Admin
@@ -8,44 +9,38 @@ require_once "./mvc/models/AccountModel.php";
 class Home extends Controller
 {
 
-    // Must have SayHi()
+    // bookstore-mvc/Home
     function SayHi()
     {
+        $addressDao = $this->dao("AddressDao");
         $bookDao = $this->dao("BookDao");
-        $allBook = $bookDao->getAll();
+        $bookItemDao = $this->dao("BookItemDao");
+
+        $address = $addressDao->GetAllAddress();
+        $bookCategory = $bookDao->GetAllBookCategory();
+        $allBook = $bookItemDao->getAllBookJoin();
 
         // Call Views
         $this->view("home-masterLayout", [
             "Page" => "listProducts",
-            "Book" => $allBook
+            "Book" => $allBook,
+            "BookCategory"=>$bookCategory,
         ]);
         //  $this->view("404Page", []);
     }
-
+    // Page 404
     function Error()
     {
         $this->view("404Page", []);
     }
-
-    function Admin()
-    {
-        $bookDao = $this->dao("BookDao");
-        $allBook = $bookDao->getAll();
-
-        // Call Views
-        $this->view("home-masterLayout", [
-            "Page" => "listProducts",
-            "isAdmin" => "admin",
-            "Book" => $allBook
-        ]);
-    }
-
+    //  Đăng ký
     public function createAccount()
     {
         // $createAjax = $this->controller("Ajax");
         // $err= $createAjax->createAccount();
         $err = [];
         if (isset($_POST['btnRegister'])) {
+            $addressId = $_POST['addressId'];
             $mail = $_POST['Mail'];
             $name = $_POST['Name'];
             $phone = $_POST['Phone'];
@@ -54,6 +49,9 @@ class Home extends Controller
             $rPassword = $_POST['rPassword'];
             if (empty($name)) {
                 $err['name'] = "Bạn chưa nhập tên.";
+            }
+            if (empty($addressId)) {
+                $err['addressId'] = "Bạn chưa nhập Dia chi.";
             }
             if (empty($mail)) {
                 $err['mail'] = "Bạn chưa nhập email.";
@@ -70,8 +68,8 @@ class Home extends Controller
 
             if (empty($err)) {
                 // $pass = password_hash($password, PASSWORD_DEFAULT);
-    
-                $newCus = new CustomerModel('', $name, $phone, $mail);
+
+                $newCus = new CustomerModel('', $addressId, $name, $phone, $mail);
                 $newAcc = new AccountModel('', '', $username, $password);
 
                 $customerDao = $this->dao("CustomerDao");
@@ -83,7 +81,7 @@ class Home extends Controller
             }
         }
     }
-
+    // Đăng nhập
     public function LoginAccount()
     {
         $bookDao = $this->dao("BookDao");
@@ -103,15 +101,15 @@ class Home extends Controller
             if (empty($err)) {
                 $accLogin = new AccountModel('', '', $username, $password);
                 $customerDao = $this->dao("CustomerDao");
-                
+
                 $userCheck = $customerDao->Login($accLogin);
                 // $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
-                if(!isset($userCheck["faultPass"]) && !isset($userCheck["faultUsername"]) ) {
+                if (!isset($userCheck["faultPass"]) && !isset($userCheck["faultUsername"])) {
                     header('location: http://localhost/bookstore-mvc/Home');
-                }else {
+                } else {
                     $this->view("404Page", [
                         "Err" => $err,
-                        "Check"=>$userCheck
+                        "Check" => $userCheck
                     ]);
                 }
             } else {
@@ -122,10 +120,32 @@ class Home extends Controller
         }
         // $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
     }
-
-    public function Logout () {    
+    //  Đăng xuất
+    public function Logout()
+    {
         unset($_SESSION['user']);
         header('location: http://localhost/bookstore-mvc/Home');
+    }
+    // Cập nhật info tài khoản
+    public function UpdateAccount()
+    {
+        if (isset($_POST['btnUpdateInfo'])) {
+            $id_customer = $_SESSION['user']["Id_customer"];
+            $addressId = $_POST['upAddressId'];
+            $mail = $_POST['upMail'];
+            $name = $_POST['upName'];
+            $phone = $_POST['upPhone'];
+
+            $customer = new CustomerModel($id_customer, $addressId, $name, $phone, $mail);
+            $customerDao = $this->dao("CustomerDao");
+
+            $check = $customerDao->UpdateAccount($customer);
+            if ($check) {
+                header('location: http://localhost/bookstore-mvc/Home');
+            } else {
+                $this->view("404Page", []);
+            }
+        }
     }
 
     function Show($a, $b)

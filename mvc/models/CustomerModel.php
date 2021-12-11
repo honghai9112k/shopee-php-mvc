@@ -2,6 +2,7 @@
 
 class CustomerModel implements JsonSerializable {
     private $id_customer;
+    private $addressId;
     private $name;
     private $phone;
     private $mail;
@@ -9,11 +10,13 @@ class CustomerModel implements JsonSerializable {
 
     public function __construct(
         $id_customer,
+        $addressId,
         $name,
         $phone,
         $mail
     ) {
         $this->id_customer = $id_customer;
+        $this->addressId = $addressId;
         $this->name = $name;
         $this->phone = $phone;
         $this->mail = $mail;
@@ -23,6 +26,7 @@ class CustomerModel implements JsonSerializable {
     {
         return [
             'id_customer' => $this->id_customer,
+            'addressId' => $this->addressId,
             'name' => $this->name,
             'phone' => $this->phone,
             'mail' => $this->mail
@@ -109,7 +113,24 @@ class CustomerModel implements JsonSerializable {
 
                 return $this;
         }
+
+    /**
+     * Get the value of addressId
+     */ 
+    public function getAddressId()
+    {
+        return $this->addressId;
+    }
+
+    /**
+     * Set the value of addressId
+     *
+     * @return  self
+     */ 
+    public function setAddressId($addressId)
+    {
+        $this->addressId = $addressId;
+
+        return $this;
+    }
 }
-
-
-?>

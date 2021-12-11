@@ -3,7 +3,6 @@
 class BookItemModel implements JsonSerializable {
     private $id_bookItem;
     private $bookId;
-    private $cartId;
     private $price;
     private $barcode;
     private $discount;
@@ -13,7 +12,6 @@ class BookItemModel implements JsonSerializable {
     public function __construct(
         $id_bookItem,
         $bookId,
-        $cartId,
         $price,
         $barcode,
         $discount,
@@ -22,7 +20,6 @@ class BookItemModel implements JsonSerializable {
     ) {
         $this->id_bookItem = $id_bookItem;
         $this->bookId = $bookId;
-        $this->cartId = $cartId;
         $this->price = $price;
         $this->barcode = $barcode;
         $this->discount = $discount;
@@ -35,7 +32,6 @@ class BookItemModel implements JsonSerializable {
         return [
             'id_bookItem' => $this->id_bookItem,
             'bookId' => $this->bookId,
-            'cartId' => $this->cartId,
             'price' => $this->price,
             'barcode' => $this->barcode,
             'discount' =>  $this->discount,
@@ -81,26 +77,6 @@ class BookItemModel implements JsonSerializable {
         public function setBookId($bookId)
         {
                 $this->bookId = $bookId;
-
-                return $this;
-        }
-
-        /**
-         * Get the value of cartId
-         */ 
-        public function getCartId()
-        {
-                return $this->cartId;
-        }
-
-        /**
-         * Set the value of cartId
-         *
-         * @return  self
-         */ 
-        public function setCartId($cartId)
-        {
-                $this->cartId = $cartId;
 
                 return $this;
         }

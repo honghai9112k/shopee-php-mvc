@@ -2,26 +2,26 @@
 
 class ShipmentModel implements JsonSerializable {
     private $id_shipment;
+    private $addressId;
     private $cost;
-    private $address;
       
 
     public function __construct(
         $id_shipment,
-        $cost,
-        $address
+        $addressId,
+        $cost
     ) {
         $this->id_shipment = $id_shipment;
+        $this->addressId = $addressId;
         $this->cost = $cost;
-        $this->address = $address;
     }
 
     public function jsonSerialize()
     {
         return [
             'id_shipment' => $this->id_shipment,
-            'cost' => $this->cost,
-            'address' => $this->address
+            'addressId' => $this->addressId,
+            'cost' => $this->cost
         ];
     }
 
@@ -67,21 +67,21 @@ class ShipmentModel implements JsonSerializable {
         }
 
         /**
-         * Get the value of address
+         * Get the value of addressId
          */ 
-        public function getAddress()
+        public function getAddressId()
         {
-                return $this->address;
+                return $this->addressId;
         }
 
         /**
-         * Set the value of address
+         * Set the value of addressId
          *
          * @return  self
          */ 
-        public function setAddress($address)
+        public function setAddressId($addressId)
         {
-                $this->address = $address;
+                $this->addressId = $addressId;
 
                 return $this;
         }
