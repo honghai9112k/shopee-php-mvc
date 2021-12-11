@@ -1,3 +1,9 @@
+<?php
+$allBoookCategory = [];
+$allBoookCategory = $data["BookCategory"];
+$allBoook = $data["Book"];
+
+?>
 <div class="grid">
     <div class="grid__row app__content">
         <div class="grid__column-2">
@@ -8,14 +14,15 @@
 
                 <ul class="category-list">
                     <li class="category-item category-item--active">
-                        <a href="#" class="category-item__link">Trang điểm mặt</a>
+                        <a href="#" class="category-item__link">Tất cả</a>
                     </li>
-                    <li class="category-item">
-                        <a href="#" class="category-item__link">Trang điểm môi</a>
-                    </li>
-                    <li class="category-item">
-                        <a href="#" class="category-item__link">Trang điểm mắt</a>
-                    </li>
+                    <?php
+                    foreach ($allBoookCategory as $key => $value) { ?>
+                        <li class="category-item ">
+                            <a href="#" class="category-item__link"><?php echo $value["Name"] ?></a>
+                        </li>
+                    <?php }
+                    ?>
                 </ul>
             </nav>
         </div>
@@ -59,15 +66,14 @@
                 <div class="grid__row list-product">
                     <!-- Test Sản phẩm -->
                     <?php
-                    $row = $data["Book"];
-                    foreach ($row as $book) { ?>
+                    foreach ($allBoook as $key => $value) { ?>
                         <div class="grid__column-2-5">
                             <a onclick="" class="home-product-item" href="#">
-                                <img src="./public/asset/img/nhagiakim.jpg" alt="" class="home-product-item__img">
-                                <h4 class="home-product-item__name"><?php echo $book->getTitle() ?></h4>
+                                <img src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
+                                <h4 class="home-product-item__name"><?php echo $value["Title"] ?></h4>
                                 <div class="home-product-item__price">
-                                    <span class="home-product-item__price-old">20000 ₫</span>
-                                    <span class="home-product-item__price-current">180000 ₫</span>
+                                    <span class="home-product-item__price-old"><?php echo $value["Price"] ?> ₫</span>
+                                    <span class="home-product-item__price-current"><?php echo ($value["Price"] * (100 - $value["Discount"]) / 100) ?> ₫</span>
                                 </div>
                                 <div class="home-product-item__action">
                                     <span class="home-product-item__like home-product-item__like--liked">
@@ -79,62 +85,25 @@
                                         <i class="home-product-item__star-gold fas fa-star"></i>
                                         <i class="home-product-item__star-gold fas fa-star"></i>
                                         <i class="home-product-item__star-gold fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star <?php echo ($value["SoldNumber"] > 200) ? "home-product-item__star-gold" : ""; ?>"></i>
                                     </div>
-                                    <div class="home-product-item__sold"><?php echo $book->getSoldNumber() ?> đã bán</div>
+                                    <div class="home-product-item__sold"><?php echo $value["SoldNumber"] ?> đã bán</div>
                                 </div>
                                 <div class="home-product-item__origin">
                                     <span class="home-product-item__brand">Whoo</span>
-                                    <span class="home-product-item__origin-title"><?php echo $book->getLanguage() ?></span>
+                                    <span class="home-product-item__origin-title"><?php echo $value["Language"] ?></span>
                                 </div>
                                 <div class="home-product-item__favourite">
                                     <i class="fas fa-check"></i>
                                     <span>Yêu thích</span>
                                 </div>
                                 <div class="home-product-item__sale-off">
-                                    <span class="home-product-item__sale-off-percent">20%</span>
+                                    <span class="home-product-item__sale-off-percent"><?php echo $value["Discount"] ?>%</span>
                                     <span class="home-product-item__sale-off-lable">GIẢM</span>
                                 </div>
                             </a>
                         </div>
                     <?php } ?>
-
-                    <div class="grid__column-2-5">
-                        <a class="home-product-item" href="#">
-                            <img src="./public/asset/img/nhagiakim.jpg" alt="" class="home-product-item__img">
-                            <h4 class="home-product-item__name">Nhà giả kim</h4>
-                            <div class="home-product-item__price">
-                                <span class="home-product-item__price-old">200000 ₫</span>
-                                <span class="home-product-item__price-current">180000 ₫</span>
-                            </div>
-                            <div class="home-product-item__action">
-                                <span class="home-product-item__like home-product-item__like--liked">
-                                    <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                    <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                </span>
-                                <div class="home-product-item__rating">
-                                    <i class="home-product-item__star-gold fas fa-star"></i>
-                                    <i class="home-product-item__star-gold fas fa-star"></i>
-                                    <i class="home-product-item__star-gold fas fa-star"></i>
-                                    <i class="home-product-item__star-gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="home-product-item__sold">1000 đã bán</div>
-                            </div>
-                            <div class="home-product-item__origin">
-                                <span class="home-product-item__brand">Whoo</span>
-                                <span class="home-product-item__origin-title">Hàn Quốc</span>
-                            </div>
-                            <div class="home-product-item__favourite">
-                                <i class="fas fa-check"></i>
-                                <span>Yêu thích</span>
-                            </div>
-                            <div class="home-product-item__sale-off">
-                                <span class="home-product-item__sale-off-percent">10%</span>
-                                <span class="home-product-item__sale-off-lable">GIẢM</span>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
 

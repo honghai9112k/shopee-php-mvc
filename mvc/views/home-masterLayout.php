@@ -25,13 +25,13 @@
                         <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
                             Vào cửa hàng trên ứng dụng F8-Shop
                             <div class="header__qr">
-                                <img src="./asset/img/qr_code.png" alt="QR code" class="header__qr-img">
+                                <img src="http://localhost/bookstore-mvc/public/asset/img/qr_code.png" alt="QR code" class="header__qr-img">
                                 <div class="header__qr-apps">
                                     <a href="" class="header__qr-link">
-                                        <img src="./asset/img/google_play.jpg" alt="Google Play" class="header__qr-download-img">
+                                        <img src="http://localhost/bookstore-mvc/public/asset/img/google_play.jpg" alt="Google Play" class="header__qr-download-img">
                                     </a>
                                     <a href="" class="header__qr-link">
-                                        <img src="./asset/img/app_store.png" alt="Google Play" class="header__qr-download-img">
+                                        <img src="http://localhost/bookstore-mvc/public/asset/img/app_store.png" alt="Google Play" class="header__qr-download-img">
                                     </a>
 
                                 </div>
@@ -258,105 +258,6 @@
     <div class="modal">
         <div class="modal__overlay"></div>
         <div class="modal__body">
-
-            <!-- Register form -->
-
-            <div class="auth-form active">
-                <div class="auth-form__container">
-                    <div class="auth-form__header">
-                        <h3 class="auth-form__heading">Đăng ký</h3>
-                        <span class="auth-form__switch-btn">Đăng nhập</span>
-                    </div>
-                    <div class="auth-form__form">
-                        <div class="auth-form__group">
-                            <input id="email-register" type="email" class="auth-form__input register" placeholder="Email của bạn">
-                            <div class="error-msg"></div>
-                        </div>
-                        <div class="auth-form__group">
-                            <input id="username-register" type="text" class="auth-form__input register" placeholder="Username của bạn">
-                            <div class="error-msg"></div>
-                        </div>
-                        <div class="auth-form__group">
-                            <input id="password-register" type="password" class="auth-form__input register" placeholder="Mật khẩu của bạn">
-                            <div class="error-msg"></div>
-                        </div>
-                        <div class="auth-form__group">
-                            <input id="password-confirm" type="password" class="auth-form__input register" placeholder="Nhập lại mật khẩu">
-                            <div class="error-msg"></div>
-                        </div>
-                    </div>
-
-                    <div class="auth-form__aside">
-                        <p class="auth-form__policy-text">
-                            Bằng việc đăng ký, bạn đã đồng ý với Shopee về
-                            <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a>&
-                            <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
-
-                        </p>
-                    </div>
-
-                    <div class="auth-form__controls">
-                        <button class="btn cancle">TRỞ LẠI</button>
-                        <button onclick="createAccount()" class="btn btn--primary">ĐĂNG KÝ</button>
-                    </div>
-                </div>
-
-                <div class="auth-form__socials">
-                    <a href="" class="btn btn--with-icon btn--with-icon-facebook ">
-                        <i class="fab fa-facebook-square "></i> Kết nối với facebook
-                    </a>
-                    <a href="" class="btn btn--with-icon btn--with-icon-google">
-                        <i class="fab fa-google"></i> Kết nối với google
-                    </a>
-
-                </div>
-            </div>
-
-            <!-- Login form -->
-
-            <div class="auth-form">
-                <div class="auth-form__container">
-                    <div class="auth-form__header">
-                        <h3 class="auth-form__heading">Đăng nhập</h3>
-                        <span class="auth-form__switch-btn">Đăng ký</span>
-                    </div>
-                    <div class="auth-form__form">
-                        <div class="auth-form__group">
-                            <input id="email-login" type="email" class="auth-form__input login" placeholder="Email của bạn">
-                            <div class="error-msg"></div>
-                        </div>
-                        <div class="auth-form__group">
-                            <input id="password-login" type="password" class="auth-form__input login" placeholder="Mật khẩu của bạn">
-                            <div class="error-msg"></div>
-                        </div>
-
-                    </div>
-
-                    <div class="auth-form__aside">
-                        <div class="auth-form__help">
-                            <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
-                            <span class="auth-form__help-saparate"></span>
-                            <a href="" class="auth-form__help-link auth-form__help-help">Cần trợ giúp ?</a>
-                        </div>
-                    </div>
-
-                    <div class="auth-form__controls">
-                        <button class="btn cancle">TRỞ LẠI</button>
-                        <button onclick="loginAccount()" class="btn btn--primary">ĐĂNG NHẬP</button>
-                    </div>
-                </div>
-
-                <div class="auth-form__socials">
-                    <a href="" class="btn btn--with-icon btn--with-icon-facebook ">
-                        <i class="fab fa-facebook-square "></i> Kết nối với facebook
-                    </a>
-                    <a href="" class="btn btn--with-icon btn--with-icon-google">
-                        <i class="fab fa-google"></i> Kết nối với google
-                    </a>
-
-                </div>
-            </div>
-
             <!-- add product form -->
             <div class="new-product">
                 <div class="form-group">
