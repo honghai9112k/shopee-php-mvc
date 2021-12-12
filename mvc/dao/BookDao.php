@@ -110,4 +110,22 @@ class BookDao extends DB implements Book_Implement
         $_SESSION['author'] = $query;
         return $query;
     }
+    public function findBookById($Id_book) {
+        $sql = "SELECT book.*, bookitem.*,
+        bookcategory.Name AS 'CategoryName', 
+        publisher.Name AS 'publisherName', publisher.Address AS 'publisherAddress',
+        author.Name AS 'AuthorName', author.Email AS 'AuthorEmail', author.Biography
+        FROM book, bookitem , bookcategory,publisher, author, book_author
+        WHERE 
+                book.Id_book =bookitem.BookId AND 
+                book.BookCategoryId =bookcategory.Id_category AND 
+                book.Id_book = publisher.Id_publisher AND
+                author.Id_author =book_author.AuthorId AND
+                book.Id_book =book_author.BookId AND
+                book.Id_book ='$Id_book'
+        ";
+        $query = mysqli_query($this->con, $sql);
+        $data = mysqli_fetch_assoc($query);
+        return $data;
+    }
 }

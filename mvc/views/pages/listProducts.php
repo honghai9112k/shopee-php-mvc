@@ -64,11 +64,10 @@ $allBoook = $data["Book"];
 
             <div class="home-product">
                 <div class="grid__row list-product">
-                    <!-- Test Sản phẩm -->
                     <?php
                     foreach ($allBoook as $key => $value) { ?>
                         <div class="grid__column-2-5">
-                            <a onclick="" class="home-product-item" href="#">
+                            <a class="home-product-item" href="http://localhost/bookstore-mvc/Product/Show/<?php echo $value["Id_book"] ?> ?>">
                                 <img src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
                                 <h4 class="home-product-item__name"><?php echo $value["Title"] ?></h4>
                                 <div class="home-product-item__price">
@@ -133,7 +132,7 @@ $allBoook = $data["Book"];
                     <a href="" class="pagination-item__link">...</a>
                 </li>
                 <li class="pagination-item">
-                    <a href="" class="pagination-item__link">14</a>
+                    <a href="" class="pagination-item__link">10</a>
                 </li>
 
                 <li class="pagination-item">

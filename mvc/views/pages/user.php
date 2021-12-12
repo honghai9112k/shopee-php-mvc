@@ -8,23 +8,25 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
 
 if (isset($user["Username"])) { ?>
     <li>
-        <div class="user">
-            <div class="header__navbar-item header__navbar-user">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="" class="header__navbar-user-img">
-                <span class="header__navbar-user-name"> <?php echo $user["Name"] ?></span>
-                <ul class="header__navbar-user-menu">
-                    <li class="header__navbar-user-item">
-                        <a href="" data-toggle="modal" data-target="#infoCustomer">Tài khoản của tôi</a>
-                    </li>
-                    <li class="header__navbar-user-item">
-                        <a href="">Đơn mua</a>
-                    </li>
-                    <li class="header__navbar-user-item" style="color: #666;">
-                        <a href="./Home/Logout">Đăng xuất</a>
-                    </li>
-                </ul>
+        <a href="http://localhost/bookstore-mvc/User/Purchase" style="text-decoration: none !important; color:#fff;">
+            <div class="user">
+                <div class="header__navbar-item header__navbar-user">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="" class="header__navbar-user-img">
+                    <span class="header__navbar-user-name"> <?php echo $user["Name"] ?></span>
+                    <ul class="header__navbar-user-menu">
+                        <li class="header__navbar-user-item">
+                            <a href="" data-toggle="modal" data-target="#infoCustomer">Tài khoản của tôi</a>
+                        </li>
+                        <li class="header__navbar-user-item">
+                            <a href="">Đơn mua</a>
+                        </li>
+                        <li class="header__navbar-user-item" style="color: #666;">
+                            <a href="http://localhost/bookstore-mvc/Home/Logout">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </a>
     </li>
 <?php } else { ?>
     <li>
@@ -79,7 +81,7 @@ if (isset($user["Username"])) { ?>
                                 <?php
                                 foreach ($allAddress as $key => $value) { ?>
                                     <option value="<?php echo $value['Id_address'] ?>">
-                                        <?php echo "Số ".$value['NumberHouse'].",Đường " .$value['Street'].", ".$value['District'].", " .$value['City'].", " .$value['Nation']." " ?>
+                                        <?php echo "Số " . $value['NumberHouse'] . ",Đường " . $value['Street'] . ", " . $value['District'] . ", " . $value['City'] . ", " . $value['Nation'] . " " ?>
                                     </option>
                                 <?php }
                                 ?>
@@ -119,7 +121,7 @@ if (isset($user["Username"])) { ?>
 <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form class="auth-form active" id="loginForm" method="POST" role="form" action="./Home/LoginAccount">
+            <form class="auth-form active" id="loginForm" method="POST" role="form" action="http://localhost/bookstore-mvc/Home/LoginAccount">
                 <div class="auth-form__container" style="margin-top: 25px;">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Đăng nhập</h3>
@@ -194,8 +196,8 @@ if (isset($user["Username"])) { ?>
                                 <?php
                                 foreach ($allAddress as $key => $value) { ?>
                                     <option value="<?php echo $value['Id_address']  ?>" <?php echo ($value['Id_address'] == $user["AddressId"]) ? "selected" : "" ?>>
-                                        <?php echo "Số nhà: ".$value['NumberHouse']."- Đường: ".$value['Street']." 
-                                        - Quận/Huyện: ".$value['District']."- Thành Phố: ".$value['City']."- ".$value['Nation']." " ?>
+                                        <?php echo "Số nhà: " . $value['NumberHouse'] . "- Đường: " . $value['Street'] . " 
+                                        - Quận/Huyện: " . $value['District'] . "- Thành Phố: " . $value['City'] . "- " . $value['Nation'] . " " ?>
                                     </option>
                                 <?php }
                                 ?>

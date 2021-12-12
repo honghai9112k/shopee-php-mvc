@@ -247,6 +247,7 @@
         opacity: 0;
         transform: scale(0);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -287,7 +288,7 @@
 .header__notify-link {
     display: flex;
     padding: 12px;
-    text-decoration: none;
+    text-decoration: none !important;
     width: 100%;
 }
 
@@ -1119,6 +1120,10 @@ i.home-product-item__like-icon-fill {
     color: #ffce3e;
 }
 
+.home-product-item__star-red {
+    color: #d0011b;
+}
+
 .home-product-item__sold {
     font-size: 1.2rem;
     color: #666;
@@ -1231,6 +1236,11 @@ i.home-product-item__like-icon-fill {
 }
 
 .product-detail-name {
+    line-height: 1.2;
+    font-size: 18px;
+}
+
+.product-detail-shipment {
     line-height: 1.2;
     font-size: 18px;
 }
@@ -1524,8 +1534,92 @@ i.home-product-item__like-icon-fill {
 }
 
 .loginSpace {
-    padding: 0 16px; 
-    font-size:16px; 
+    padding: 0 16px;
+    font-size: 16px;
     color: #fff !important;
     cursor: auto;
+}
+
+.numberStar {
+    color: #d0011b;
+    margin-right: 4px;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.numberVote {
+    border-right: 1px solid rgba(0, 0, 0, .14);
+    border-left: 1px solid rgba(0, 0, 0, .14);
+    margin: 0 10px 0 10px;
+}
+
+.numberVoteText {
+    margin: 0 10px 0 10px;
+    color: #767676;
+    font-size: 17px;
+}
+
+.soldNumberText {
+    color: #767676;
+    font-size: 17px;
+}
+
+.addressProduct {
+    display: flex;
+    margin-top: 16px;
+}
+
+.addressProduct_select {
+    font-size: 12px;
+    color: #666;
+    max-width: 340px;
+    margin-left: 16px;
+}
+
+#orderBtn {
+    padding: 20.55px 41px;
+    margin-bottom: 6px;
+}
+
+.quantityProductClass {
+    max-width: 60px !important;
+}
+
+.addRightBtn {
+    min-width: 38px !important;
+    border: 1px solid #ccc !important;
+    border-left: none !important;
+    color: #888;
+}
+
+.addLeftBtn {
+    min-width: 38px !important;
+    border: 1px solid #ccc !important;
+    border-right: none !important;
+    color: #888;
+    margin-left: 78px;
+}
+
+.label-des {
+    width: auto;
+    font-size: 16px;
+    color: #888;
+    margin-right: 160px;
+    margin-left: 8px;
+    width: 150px;
+}
+
+.header-des {
+    background-color: #fafafa;
+    padding: 16px 0 16px 24px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.descText {
+    font-size: 15px;
+    margin-left: 8px;
+    line-height: 1.875rem;
+    width: 95%;
 }
