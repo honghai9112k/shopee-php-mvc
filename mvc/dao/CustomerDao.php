@@ -99,12 +99,11 @@ class CustomerDao extends DB implements Customer_Implement
     public function UpdateSessionUser()
     {
         $Id_customer = $_SESSION['user']["Id_customer"];
-        $sql = "SELECT account.*, customer.Id_customer, customer.Name, customer.Phone, customer.Mail, customer.AddressId FROM account JOIN customer 
-             ON Id_customer = '$Id_customer' AND account.CustomerId=customer.Id_customer";
+        $sql = "SELECT account.*, customer.Id_customer, customer.Name, customer.Phone, customer.Mail, customer.AddressId, address.* FROM account JOIN customer JOIN address
+        ON Id_customer = '$Id_customer' AND account.CustomerId=customer.Id_customer AND address.Id_address=customer.AddressId";
         $query = mysqli_query($this->con, $sql);
         $data = mysqli_fetch_assoc($query);
         $_SESSION['user'] = $data;
         return $_SESSION['user'];
     }
-
 }
