@@ -66,8 +66,16 @@ $allBoook = $data["Book"];
                 <div class="grid__row list-product">
                     <?php
                     foreach ($allBoook as $key => $value) { ?>
-                        <div class="grid__column-2-5">
-                            <a class="home-product-item" href="http://localhost/bookstore-mvc/Product/Show/<?php echo $value["Id_book"] ?> ?>">
+                        <div class="grid__column-2-5" style="position: relative;">
+                            <?php
+                            if (isset($data["isAdmin"])) { ?>
+                                <div>
+                                    <a href="http://localhost/bookstore-mvc/Admin/DeleteProduct/<?php echo $value["Id_book"] ?>" class="deleteBtn">Xóa <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a href="http://localhost/bookstore-mvc/Admin/UpdateProductView/<?php echo $value["Id_book"] ?>" class="updateBtn">Sửa <i class="fa fa-wrench" aria-hidden="true"></i></a>
+                                </div>
+                            <?php }
+                            ?>
+                            <a class="home-product-item" href="http://localhost/bookstore-mvc/Product/Show/<?php echo $value["Id_book"] ?>">
                                 <img src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
                                 <h4 class="home-product-item__name"><?php echo $value["Title"] ?></h4>
                                 <div class="home-product-item__price">
