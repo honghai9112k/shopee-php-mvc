@@ -61,7 +61,7 @@ class BookDao extends DB implements Book_Implement
         $result =  mysqli_query($this->con, $qr_book);
 
 
-        if ($result ) {
+        if ($result) {
             // Lấy ra id customer vừa thêm
             $idMaxQuery = mysqli_query($this->con, "SELECT MAX(Id_book) as maxidBook FROM book;");
             $idmaxBook = mysqli_fetch_assoc($idMaxQuery)['maxidBook'];
@@ -80,8 +80,6 @@ class BookDao extends DB implements Book_Implement
         }
         return json_encode($result);
     }
-
-
 
     // Lấy ra tất cả các Publisher
     public function GetAllPublisher()
@@ -110,11 +108,12 @@ class BookDao extends DB implements Book_Implement
         $_SESSION['author'] = $query;
         return $query;
     }
-    public function findBookById($Id_book) {
+    public function findBookById($Id_book)
+    {
         $sql = "SELECT book.*, bookitem.*,
         bookcategory.Name AS 'CategoryName', 
         publisher.Name AS 'publisherName', publisher.Address AS 'publisherAddress',
-        author.Name AS 'AuthorName', author.Email AS 'AuthorEmail', author.Biography
+        author.Name AS 'AuthorName',author.Id_author AS 'AuthorId', author.Email AS 'AuthorEmail', author.Biography
         FROM book, bookitem , bookcategory,publisher, author, book_author
         WHERE 
                 book.Id_book =bookitem.BookId AND 
@@ -127,5 +126,55 @@ class BookDao extends DB implements Book_Implement
         $query = mysqli_query($this->con, $sql);
         $data = mysqli_fetch_assoc($query);
         return $data;
+    }
+    public function DeleteBook($Id_book)
+    {
+        $check = false;
+
+        $sql = "DELETE FROM book_author WHERE book_author.BookId= '$Id_book'";
+        $query = mysqli_query($this->con, $sql);
+        if ($query) {
+            $sql2 = "DELETE FROM book WHERE book.Id_book = '$Id_book'";
+            $query2 = mysqli_query($this->con, $sql2);
+            if ($query2) {
+                $check = true;
+            }
+        }
+        return $check;
+    }
+    public function UpdateBook(BookModel $newBook, BookItemModel $newBookItem, $authorId)
+    {
+        $result = false;
+        $id_book = $newBook->getId_book();
+        $bookCategoryId = $newBook->getBookCategoryId();
+        $publisherId = $newBook->getPublisherId();
+        $isbn = $newBook->getISBN();
+        $title = $newBook->getTitle();
+        $summary = $newBook->getSummary();
+        $publicationDate = $newBook->getPublicationDate();
+        $numberOfPage = $newBook->getNumberOfPage();
+        $language = $newBook->getLanguage();
+        $soldNumber = $newBook->getSoldNumber();
+        $price = $newBookItem->getPrice();
+        $barcode = $newBookItem->getBarcode();
+        $discount = $newBookItem->getDiscount();
+        $image = $newBookItem->getImage();
+        $description = $newBookItem->getDescription();
+
+        $qr_book = "UPDATE book SET BookCategoryId = '$bookCategoryId', PublisherId = '$publisherId', ISBN = '$isbn', Title = '$title',Summary = '$summary', PublicationDate = '$publicationDate', NumberOfPage = '$numberOfPage',Language = '$language', SoldNumber = '$soldNumber' WHERE book.Id_book = '$id_book'";
+        $result =  mysqli_query($this->con, $qr_book);
+
+
+        if ($result) {
+            $qr_bookauthor = "UPDATE book_author SET BookId = '$id_book', AuthorId = '$authorId' WHERE BookId = '$id_book'";
+            $qr =  mysqli_query($this->con, $qr_bookauthor);
+
+            $qr_bookitem = "UPDATE bookitem SET Price ='$price', Barcode='$barcode', Discount='$discount', Image='$image', Description='$description' WHERE BookId = '$id_book'";
+            $rs =  mysqli_query($this->con, $qr_bookitem);
+            if ($rs && $qr) {
+                $result = true;
+            }
+        }
+        return json_encode($result);
     }
 }

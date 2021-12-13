@@ -1,3 +1,7 @@
+<?php 
+$bookFind = [];
+    $bookFind = isset($data["BookFind"])? $data["BookFind"] :[];
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -5,8 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopee Việt Nam | Mua và Bán Trên Ứng Dụng Di Động Hoặc Website</title>
-    <link rel="icon" href="./public/asset/img/shopee.png" type="image/gif" sizes="16x16">
+    <title> <?php echo empty($bookFind)? "Shopee Việt Nam | Mua và Bán Trên Ứng Dụng Di Động Hoặc Website" : $bookFind["Title"] ;?></title>
+    <link rel="icon" href="http://localhost/bookstore-mvc/public/asset/img/shopee.png" type="image/gif" sizes="16x16">
     <!-- <link rel="icon" href="https://i.pinimg.com/236x/0f/06/dc/0f06dc51a4ef42e672fbac51fdeea488.jpg" type="image/gif" sizes="16x16"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">

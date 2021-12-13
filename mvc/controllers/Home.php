@@ -148,8 +148,4 @@ class Home extends Controller
         }
     }
 
-    function ShowProduct($id_book)
-    {
-        
-    }
 }

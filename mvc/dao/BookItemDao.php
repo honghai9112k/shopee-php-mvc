@@ -37,4 +37,13 @@ class BookItemDao extends DB implements BookItem_Implement
         book.Id_book = book_author.BookId AND
         author.Id_author = book_author.AuthorId
     */
+    public function DeleteBookItem($Id_book) {
+        $check = false;
+        $sql = "DELETE FROM bookitem WHERE bookitem.BookId = '$Id_book'";
+        $query = mysqli_query($this->con, $sql);
+        if($query) {
+            $check = true;
+        }
+        return $check;
+    }
 }
