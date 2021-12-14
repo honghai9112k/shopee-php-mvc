@@ -2,7 +2,6 @@
 $allBoookCategory = [];
 $allBoookCategory = $data["BookCategory"];
 $allBoook = $data["Book"];
-
 ?>
 <div class="grid">
     <div class="grid__row app__content">

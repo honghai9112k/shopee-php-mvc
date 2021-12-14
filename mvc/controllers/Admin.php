@@ -18,6 +18,8 @@ class Admin extends Controller
         $bookDao = $this->dao("BookDao");
         $allBook = $bookItemDao->getAllBookJoin();
         $bookCategory = $bookDao->GetAllBookCategory();
+        $cartDao = $this->dao("CartDao");
+        $cart = $cartDao->GetCart();
 
         if (empty($_SESSION['user'])) {
             // Call Views
@@ -44,6 +46,8 @@ class Admin extends Controller
         $publisher = $bookDao->GetAllPublisher();
         $bookCategory = $bookDao->GetAllBookCategory();
         $author = $bookDao->GetAllAuthor();
+        $cartDao = $this->dao("CartDao");
+        $cart = $cartDao->GetCart();
 
         $this->view("adminHome", [
             "Page" => "addProduct",
@@ -152,7 +156,9 @@ class Admin extends Controller
         $publisher = $bookDao->GetAllPublisher();
         $bookCategory = $bookDao->GetAllBookCategory();
         $author = $bookDao->GetAllAuthor();
-
+        $cartDao = $this->dao("CartDao");
+        $cart = $cartDao->GetCart();
+        
         $book = $bookDao->findBookById($Id_book);
 
         $this->view("adminHome", [

@@ -2,9 +2,10 @@
 require_once "./mvc/models/CustomerModel.php";
 require_once "./mvc/models/AccountModel.php";
 require_once "./mvc/models/AddressModel.php";
+require_once "./mvc/models/CartModel.php";
+require_once "./mvc/models/CartBookItemModel.php";
 // http://localhost/bookstore-mvc/Home/Show/1/2
 // http://localhost/bookstore-mvc/Home
-// http://localhost/bookstore-mvc/Home/Admin
 
 class Home extends Controller
 {
@@ -15,6 +16,8 @@ class Home extends Controller
         $addressDao = $this->dao("AddressDao");
         $bookDao = $this->dao("BookDao");
         $bookItemDao = $this->dao("BookItemDao");
+        $cartDao = $this->dao("CartDao");
+        $cart = $cartDao->GetCart();
 
         $address = $addressDao->GetAllAddress();
         $bookCategory = $bookDao->GetAllBookCategory();
@@ -24,10 +27,12 @@ class Home extends Controller
         $this->view("home-masterLayout", [
             "Page" => "listProducts",
             "Book" => $allBook,
-            "BookCategory"=>$bookCategory,
+            "BookCategory" => $bookCategory,
+            "Cart" => $cart
         ]);
         //  $this->view("404Page", []);
     }
+
     // Page 404
     function Error()
     {
