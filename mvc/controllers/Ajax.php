@@ -16,7 +16,13 @@ class Ajax extends Controller
             echo "Username đã tồn tại.";
         }
     }
-    public function addCart() {
-        echo $this->cartDao->CountCart();
+    public function minusItem() {
+        $idBookItem = $_POST["id"];
+        $check= $this->cartDao->MinusItem($idBookItem);
+        if ($check) {
+            echo '<h1>'.$check.'</h1>';
+        }else {
+            echo "Fall";
+        }
     }
 }

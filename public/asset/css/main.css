@@ -1707,6 +1707,7 @@ i.home-product-item__like-icon-fill {
     min-height: 160px;
     font-size: 16px;
     bottom: 0;
+    box-shadow: 1px 0px 20px 1px #c9c9c9;
 }
 
 .icon-voucher-line {

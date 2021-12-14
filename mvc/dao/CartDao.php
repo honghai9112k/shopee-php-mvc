@@ -46,4 +46,81 @@ class CartDao extends DB implements Cart_Implement
     //     }
     //     return $check;
     // }
+    public function AddItemToCart($id_bookItem, $Amount)
+    {
+        $CheckCarrt = $this->GetCart();
+        // Kiểm tra nếu không tồn tại session cart
+        if (!empty($CheckCarrt)) {
+            // kiểm tra xem tồn tại bookItemId
+            $check = false;
+            $cartId = 1;
+            $amountOld = 0;
+            foreach ($_SESSION['cart'] as $key => $value) {
+                if ($value['Id_bookItem'] == $id_bookItem) {
+                    $check = true;
+                    $amountOld = $value['Amount'];
+                }
+                $cartId = $value['Id_cart'];
+            }
+            // Thêm tăng số lượng/ tạo item cart mới
+            if ($check) {
+                $amountNew = $amountOld + $Amount;
+                $qrUp = "UPDATE cart_bookitem SET Amount = '$amountNew' WHERE BookItemId = '$id_bookItem'";
+                $result =  mysqli_query($this->con, $qrUp);
+                return $result;
+            } else {
+                $qrAdd = "INSERT INTO cart_bookitem(CartId, BookItemId, Amount) VALUES ('$cartId','$id_bookItem','1')";
+                $rs =  mysqli_query($this->con, $qrAdd);
+                return $rs;
+            }
+        } else {
+            // Tạo cart mới
+            $qrCart = "INSERT INTO cart(Id_cart) VALUES ('')";
+            $query =  mysqli_query($this->con, $qrCart);
+
+            // Lấy ra id cart vừa thêm
+            $idMaxQuery = mysqli_query($this->con, "SELECT MAX(Id_cart) as maxCart FROM cart;");
+            $idmaxCart = mysqli_fetch_assoc($idMaxQuery)['maxCart'];
+
+            // thêm vào bảng cart_bookitem
+            $qrAdd1 = "INSERT INTO cart_bookitem(CartId, BookItemId, Amount) VALUES ('$idmaxCart','$id_bookItem','$Amount')";
+            $rs1 =  mysqli_query($this->con, $qrAdd1);
+            return $rs1;
+        }
+    }
+    public function DeleteAllCart()
+    {
+        $Cart = $this->GetCart();
+        if (!empty($Cart)) {
+            $cartId = 0;
+            foreach ($_SESSION['cart'] as $key => $value) {
+                $cartId = $value['Id_cart'];
+            }
+            $sql = "DELETE FROM cart_bookitem WHERE cart_bookitem.CartId='$cartId'";
+            $query = mysqli_query($this->con, $sql);
+            return $query;
+        }
+    }
+    public function MinusItem($Id_bookItem)
+    {
+        $sqlAmount = "SELECT cart_bookitem.* FROM cart_bookitem WHERE BookItemId = '$Id_bookItem'";
+        $qr = mysqli_query($this->con, $sqlAmount);
+        $amount = mysqli_fetch_assoc($qr)['Amount'];
+        if ($amount > 1) {
+            $sql = "UPDATE cart_bookitem SET Amount = Amount-1  WHERE BookItemId = '$Id_bookItem'";
+            $query = mysqli_query($this->con, $sql);
+            if ($query) {
+                $sql1 = "SELECT cart_bookitem.* FROM cart_bookitem WHERE BookItemId = '$Id_bookItem'";
+                $qr1 = mysqli_query($this->con, $sql1);
+                $amountNew = mysqli_fetch_assoc($qr1)['Amount'];
+                return  $amountNew;
+            } else {
+                return $query;
+            }
+        }else {
+            $sqlDel = "DELETE FROM cart_bookitem WHERE BookItemId = '$Id_bookItem'";
+            $rs = mysqli_query($this->con, $sqlDel);
+            return $rs;
+        }
+    }
 }

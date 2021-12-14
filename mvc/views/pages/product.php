@@ -70,28 +70,29 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
                     <div class="addressProduct">
                         <label for="priceShipment" style="width:auto;font-size: 16px;">Phí vận chuyển: <i class="fa fa-chevron-down" aria-hidden="true"></i></label>
                     </div>
-                    <div class="addressProduct input-group-lg">
-                        <label for="quantityProduct" style="width:auto;font-size: 16px;">Số lượng: </label>
-                        <button class="btn addLeftBtn"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                        <input class=" form-control quantityProductClass text-center" id="quantityProduct" type="text" class="auth-form__input" placeholder="" name="priceShipment" style="font-size: 12px;">
-                        <button class="btn addRightBtn"><i class="fa fa-plus" aria-hidden="true"></i></button>
-
-                    </div>
                 </div>
             </div>
+            <form role="form" method="POST" id="addCartForm" action="http://localhost/bookstore-mvc/Cart/AddItemToCart/<?php echo $bookFind['Id_bookItem']; ?>">
+                <div class="addressProduct input-group-lg">
+                    <label for="Amount" style="width:auto;font-size: 16px; color: #888;">Số lượng: </label>
+                    <button class="btn addLeftBtn"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <input name="Amount" class=" form-control quantityProductClass text-center" id="Amount" type="text" class="auth-form__input" placeholder="" name="priceShipment" style="font-size: 12px;" value="1">
+                    <button class="btn addRightBtn"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+                <div class="btn-container">
+                    <button class="product-detail-btn" style="margin-right: 26px;" type="submit" name="addCartBtn" id="addCartBtn">
+                        <i class="fas fa-cart-plus product-detail-btn-icon"></i>
+                        Thêm Vào Giỏ Hàng
+                    </button>
+                    <!-- <button id="addCartBtn">click me</button> -->
+                    <button id="orderBtn" name="orderBtn" class="btn btn--primary">Mua Ngay</button>
+                    <div class="checkorder"></div>
+                </div>
+            </form>
 
-            <div class="btn-container">
-                <button class="product-detail-btn" style="margin-right: 26px;" type="button">
-                    <i class="fas fa-cart-plus product-detail-btn-icon"></i>
-                    Thêm Vào Giỏ Hàng
-                </button>
-                <button id="addCartBtn">click me</button>
-
-                <button id="orderBtn" name="orderBtn" class="btn btn--primary">Mua Ngay</button>
-                <div class="checkorder"></div>
-            </div>
 
         </div>
+
     </div>
     <div class="grid__row product-detail">
         <div class="product-detail-infor" style="width:100%">

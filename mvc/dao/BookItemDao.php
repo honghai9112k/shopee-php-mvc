@@ -46,4 +46,22 @@ class BookItemDao extends DB implements BookItem_Implement
         }
         return $check;
     }
+    public function GetBookByIdBookItem ($BookItemId) {
+        $sql = "SELECT book.*, bookitem.*,
+        bookcategory.Name AS 'CategoryName', 
+        publisher.Name AS 'publisherName', publisher.Address AS 'publisherAddress',
+        author.Name AS 'AuthorName', author.Email AS 'AuthorEmail', author.Biography
+        FROM book, bookitem , bookcategory,publisher, author, book_author
+        WHERE 
+                book.Id_book =bookitem.BookId AND 
+                book.BookCategoryId =bookcategory.Id_category AND 
+                book.PublisherId = publisher.Id_publisher AND
+                author.Id_author =book_author.AuthorId AND
+                book.Id_book =book_author.BookId AND
+                bookitem.Id_bookItem = '$BookItemId'
+        ";
+        $query = mysqli_query($this->con, $sql);
+        $data = mysqli_fetch_assoc($query);
+        return $data;
+    }
 }

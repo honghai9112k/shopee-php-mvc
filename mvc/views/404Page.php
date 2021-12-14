@@ -92,8 +92,6 @@
                             </div>
                         </li>
 
-                        <?php if(isset($data["isAdmin"])) require_once "./mvc/views/pages/" . $data["isAdmin"] . ".php" ?>
-                        <?php require_once "./mvc/views/pages/user.php" ?>
                         
                     </ul>
                 </nav>
@@ -167,6 +165,7 @@
             <div style="text-align: center;">
                 <p style="color: red;"><?php if(isset($data["Err"])){ echo empty($data["Err"]) ?"" :"Vui lòng điền đầy đủ thông tin";    } ?></p>
                 <p style="color: red;"><?php if(isset($data["Check"])){ echo empty($data["Check"]["faultPass"]) ? "Không tồn tại Username." :$data["Check"]["faultPass"] ;    } ?></p>
+                <!-- <p style="color: red;"><?php echo $data["Err"];?></p> -->
             </div>
             <div style="text-align: center;">
                 <button class="btn btn--primary">

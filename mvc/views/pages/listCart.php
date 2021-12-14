@@ -44,30 +44,33 @@ if (isset($_SESSION["cart"])) {
     </div>
     <div class="cart-item cart-space"></div>
 
+    <div class="listCart">
+        <?php
+        foreach ($cart as $key => $value) {
+            $priceDiscount = $value["Price"] * (100 - $value["Discount"]) / 100; ?>
+            <div class="cart-item">
+                <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value["Image"]; ?>" alt="">
+                <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
+                <div class="cart-item-price">
+                    <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
+                    <p class="cart-item-price-sale"><?php echo $priceDiscount ?> ₫</p>
+                </div>
+                <span class="cart-item-number">
+                    <input type="hidden" class="form-control" id="Id_bookItem-Cart" value="<?php echo $value['Id_bookItem'] ?>" name="Id_bookItem-Cart" style="width:0%" readonly>
 
-    <?php
-    foreach ($cart as $key => $value) {
-        $priceDiscount = $value["Price"] * (100 - $value["Discount"]) / 100; ?>
-        <div class="cart-item">
-            <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value["Image"]; ?>" alt="">
-            <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
-            <div class="cart-item-price">
-                <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
-                <p class="cart-item-price-sale"><?php echo $priceDiscount ?> ₫</p>
+                    <button onclick="minusBookItem($value['Id_bookItem'])" class="cart-item-number-btn minusBtn" type="submit" name="minusBtn"> - </button>
+                    <p class="cart-item-number-text amount-Cart"><?php echo $value["Amount"]; ?></p>
+                    <button class="cart-item-number-btn plusBtn" name="plusBtn"> + </button>
+
+                </span>
+                <p class="cart-item-sum-money"><?php echo ($value["Amount"] * $priceDiscount); ?> ₫</p>
+                <div class="cart-item-delete">
+                    <i class="fas fa-trash cart-item-delete-icon"></i>
+                </div>
             </div>
-            <span class="cart-item-number">
-                <button class="cart-item-number-btn"> - </button>
-                <p class="cart-item-number-text">
-                    <?php echo $value["Amount"]; ?>
-                </p>
-                <button class="cart-item-number-btn"> + </button>
-            </span>
-            <p class="cart-item-sum-money"><?php echo ($value["Amount"] * $priceDiscount); ?> ₫</p>
-            <div class="cart-item-delete">
-                <i class="fas fa-trash cart-item-delete-icon"></i>
-            </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
+
 </div>
 <div class="cart-item cart-space"></div>
 <div class="btnOrderContainer">
@@ -105,7 +108,7 @@ if (isset($_SESSION["cart"])) {
     </div>
     <div class="row3">
         <a class="linkcart" href="">Chọn tất cả()</span></a>
-        <a class="linkcart" href="">Xóa</a>
+        <a class="linkcart" href=" http://localhost/bookstore-mvc/Cart/DeleteAllCart">Xóa</a>
         <a class="linkcart" href="">Bỏ sản phẩm không hoạt động</a>
         <a class="linkcart" href="" style="color: #ee4d2d">Lưu vào mục Đã thích</a>
         <span>Tổng thanh toán(0 sản phẩm): đ</span>
