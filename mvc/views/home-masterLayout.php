@@ -1,6 +1,12 @@
-<?php 
+<?php
 $bookFind = [];
-    $bookFind = isset($data["BookFind"])? $data["BookFind"] :[];
+$bookFind = isset($data["BookFind"]) ? $data["BookFind"] : [];
+
+$title = "Shopee Việt Nam | Mua và Bán Trên Ứng Dụng Di Động Hoặc Website";
+if (!empty($bookFind)) {
+    $title = "Sách " . $bookFind["Title"];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -9,7 +15,7 @@ $bookFind = [];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?php echo empty($bookFind)? "Shopee Việt Nam | Mua và Bán Trên Ứng Dụng Di Động Hoặc Website" : $bookFind["Title"] ;?></title>
+    <title> <?php echo $title; ?></title>
     <link rel="icon" href="http://localhost/bookstore-mvc/public/asset/img/shopee.png" type="image/gif" sizes="16x16">
     <!-- <link rel="icon" href="https://i.pinimg.com/236x/0f/06/dc/0f06dc51a4ef42e672fbac51fdeea488.jpg" type="image/gif" sizes="16x16"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -135,28 +141,19 @@ $bookFind = [];
                                 </li>
                             </ul>
                         </div>
-                        <button class="header__search-btn">
+                        <button class="header__search-btn" id="btnSearch" type="button">
                             <i class="header__search-btn-icon fas fa-search"></i>
                         </button>
                     </div>
 
-                    <div onclick="renderCart()" class="header__cart">
-                        <div class="header__cart-wrap">
-                            <i class="header__cart-icon fas fa-shopping-cart"></i>
-                            <div class="header__cart-list" onclick="renderCart()" style="cursor: pointer">
-                                <img src="./public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
-                                <p class="header__cart-list--no-cart-msg">
-                                    Chưa có sản phẩm
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php require_once "./mvc/views/pages/cartSmall.php" ?>
                 </div>
 
             </div>
         </header>
 
         <div class="app__container">
+            <!-- <button id="addCartBtn">click me</button> -->
             <?php require_once "./mvc/views/pages/" . $data["Page"] . ".php" ?>
         </div>
 
@@ -195,13 +192,14 @@ $bookFind = [];
                         <h3 class="footer__heading">Danh mục</h3>
                         <ul class="footer-list">
                             <?php
-                            if(isset($data["BookCategory"])){
-                            $allBoookCategory = $data["BookCategory"];
-                            foreach ($allBoookCategory as $key => $value) { ?>
-                                <li class="footer-item">
-                                    <a href="#" class="footer-item__link"><?php echo $value["Name"] ?></a>
-                                </li>
-                            <?php }}
+                            if (isset($data["BookCategory"])) {
+                                $allBoookCategory = $data["BookCategory"];
+                                foreach ($allBoookCategory as $key => $value) { ?>
+                                    <li class="footer-item">
+                                        <a href="#" class="footer-item__link"><?php echo $value["Name"] ?></a>
+                                    </li>
+                            <?php }
+                            }
                             ?>
                         </ul>
                     </div>
@@ -231,10 +229,10 @@ $bookFind = [];
                             <img src="./asset/img/qr_code.png" alt="" class="footer__download-qr">
                             <div class="footer__download-apps">
                                 <a href="" class="footer__download-app-link">
-                                    <img src="./asset/img/google_play.jpg" alt="" class="footer__download-app-img">
+                                    <img src="http://localhost/bookstore-mvc/public/asset/img/google_play.jpg" alt="" class="footer__download-app-img">
                                 </a>
                                 <a href="" class="footer__download-app-link">
-                                    <img src="./asset/img/app_store.png" alt="" class="footer__download-app-img">
+                                    <img src="http://localhost/bookstore-mvc/public/asset/img/app_store.png" alt="" class="footer__download-app-img">
                                 </a>
                             </div>
                         </div>
@@ -255,6 +253,8 @@ $bookFind = [];
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
     <script src="./public/js/main.js"></script>
+
+
 </body>
 
 </html>

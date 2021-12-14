@@ -118,7 +118,7 @@ class BookDao extends DB implements Book_Implement
         WHERE 
                 book.Id_book =bookitem.BookId AND 
                 book.BookCategoryId =bookcategory.Id_category AND 
-                book.Id_book = publisher.Id_publisher AND
+                book.PublisherId = publisher.Id_publisher AND
                 author.Id_author =book_author.AuthorId AND
                 book.Id_book =book_author.BookId AND
                 book.Id_book ='$Id_book'

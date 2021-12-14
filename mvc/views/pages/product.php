@@ -1,6 +1,4 @@
 <?php
-$allBoookCategory = [];
-$allBoookCategory = $data["BookCategory"];
 $allBoook = $data["Book"];
 $bookFind = $data["BookFind"];
 $allAddress = $data["AllAddress"];
@@ -46,11 +44,20 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
             <div class="product-detail-shipment">
                 <div style="color: #888;">
                     <div class="addressProduct">
-                        <p style="font-size: 16px;">Vận chuyển tới: <i class="fa fa-car" aria-hidden="true"></i></p>
+                        <p style="font-size: 16px;">Vận chuyển tới: </p>
+                        <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-free-shipping-line">
+                            <g>
+                                <line fill="none" stroke-linejoin="round" stroke-miterlimit="10" x1="8.6" x2="4.2" y1="9.8" y2="9.8"></line>
+                                <circle cx="3" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle>
+                                <circle cx="10" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle>
+                                <line fill="none" stroke-miterlimit="10" x1="10.5" x2="14.4" y1="7.3" y2="7.3"></line>
+                                <polyline fill="none" points="1.5 9.8 .5 9.8 .5 1.8 10 1.8 10 9.1" stroke-linejoin="round" stroke-miterlimit="10"></polyline>
+                                <polyline fill="none" points="9.9 3.8 14 3.8 14.5 10.2 11.9 10.2" stroke-linejoin="round" stroke-miterlimit="10"></polyline>
+                            </g>
+                        </svg>
                         <select class="custom-select addressProduct_select" id="addressId" name="addressId" style="font-size: 12px;color: #666;">
                             <option <?php echo (empty($user)) ? "" : "selected"; ?>>Chọn địa chỉ của bạn</option>
-                            <?php
-                            foreach ($allAddress as $key => $value) { ?>
+                            <?php foreach ($allAddress as $key => $value) { ?>
                                 <option value="<?php echo $value['Id_address'] ?>" <?php if (isset($user['AddressId']) && $user['AddressId'] == $value['Id_address']) {
                                                                                         echo "selected";
                                                                                     } ?>>
@@ -73,12 +80,15 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
                 </div>
             </div>
 
-            <div>
-                <button class="product-detail-btn" style="margin-right: 26px;">
+            <div class="btn-container">
+                <button class="product-detail-btn" style="margin-right: 26px;" type="button">
                     <i class="fas fa-cart-plus product-detail-btn-icon"></i>
                     Thêm Vào Giỏ Hàng
                 </button>
-                <button id="orderBtn" name="orderBtn" class="btn btn--primary" type="submit">Mua Ngay</button>
+                <button id="addCartBtn">click me</button>
+
+                <button id="orderBtn" name="orderBtn" class="btn btn--primary">Mua Ngay</button>
+                <div class="checkorder"></div>
             </div>
 
         </div>
@@ -177,3 +187,14 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
             </div>
         </div>
     </div>
+
+</div>
+<!-- <script>
+    $(document).ready(function () {
+    $("#addCartBtn").click(function () {
+        $.post("http://localhost/bookstore-mvc/mvc/controllers/Ajax/addCart", {}, function (data1) {
+            $(".checkorder").html(data1);
+        })
+    });
+});
+</script> -->
