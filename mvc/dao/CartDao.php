@@ -69,7 +69,7 @@ class CartDao extends DB implements Cart_Implement
                 $result =  mysqli_query($this->con, $qrUp);
                 return $result;
             } else {
-                $qrAdd = "INSERT INTO cart_bookitem(CartId, BookItemId, Amount) VALUES ('$cartId','$id_bookItem','1')";
+                $qrAdd = "INSERT INTO cart_bookitem(CartId, BookItemId, Amount) VALUES ('$cartId','$id_bookItem','$Amount')";
                 $rs =  mysqli_query($this->con, $qrAdd);
                 return $rs;
             }
@@ -101,6 +101,19 @@ class CartDao extends DB implements Cart_Implement
             return $query;
         }
     }
+    public function DeleteCartByIdBookItem($BookItemId)
+    {
+        $Cart = $this->GetCart();
+        if (!empty($Cart)) {
+            $cartId = 0;
+            foreach ($_SESSION['cart'] as $key => $value) {
+                $cartId = $value['Id_cart'];
+            }
+            $sql = "DELETE FROM cart_bookitem WHERE cart_bookitem.CartId='$cartId' AND cart_bookitem.BookItemId = '$BookItemId'";
+            $query = mysqli_query($this->con, $sql);
+            return $query;
+        }
+    }
     public function MinusItem($Id_bookItem)
     {
         $sqlAmount = "SELECT cart_bookitem.* FROM cart_bookitem WHERE BookItemId = '$Id_bookItem'";
@@ -117,10 +130,24 @@ class CartDao extends DB implements Cart_Implement
             } else {
                 return $query;
             }
-        }else {
+        } else {
             $sqlDel = "DELETE FROM cart_bookitem WHERE BookItemId = '$Id_bookItem'";
             $rs = mysqli_query($this->con, $sqlDel);
-            return $rs;
+            return "0";
+        }
+    }
+    public function PlusItem($Id_bookItem)
+    {
+
+        $sql = "UPDATE cart_bookitem SET Amount = Amount+1  WHERE BookItemId = '$Id_bookItem'";
+        $query = mysqli_query($this->con, $sql);
+        if ($query) {
+            $sql1 = "SELECT cart_bookitem.* FROM cart_bookitem WHERE BookItemId = '$Id_bookItem'";
+            $qr1 = mysqli_query($this->con, $sql1);
+            $amountNew = mysqli_fetch_assoc($qr1)['Amount'];
+            return  $amountNew;
+        } else {
+            return $query;
         }
     }
 }

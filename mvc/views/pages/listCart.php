@@ -53,19 +53,30 @@ if (isset($_SESSION["cart"])) {
                 <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
                 <div class="cart-item-price">
                     <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
-                    <p class="cart-item-price-sale"><?php echo $priceDiscount ?> ₫</p>
+
+                    <input type="hidden" class="form-control" id="<?php echo 'newPrice' . $value["Id_bookItem"] . ''; ?>" value="<?php echo $priceDiscount ?>" name="newPrice" style="width:0%" readonly>
+                    <p class="cart-item-price-sale <?php echo 'newPrice' . $value["Id_bookItem"] . ''; ?>"><?php echo $priceDiscount ?> ₫</p>
+
                 </div>
                 <span class="cart-item-number">
-                    <input type="hidden" class="form-control" id="Id_bookItem-Cart" value="<?php echo $value['Id_bookItem'] ?>" name="Id_bookItem-Cart" style="width:0%" readonly>
+                    <input type="hidden" class="form-control" id="<?php echo 'Id_bookItem-Cart' . $value["Id_bookItem"] . ''; ?>" value="<?php echo $value['Id_bookItem'] ?>" name="Id_bookItem-Cart" style="width:0%" readonly>
+                    <!-- viết hàm minusBookItem nhận id_bookItem cần thêm rồi gọi trong main.js và Ajax.js -->
+                    <button onclick="minusBookItem(<?php echo $value['Id_bookItem'] ?>)" class="cart-item-number-btn minusBtn" type="submit" name="minusBtn"> - </button>
 
-                    <button onclick="minusBookItem($value['Id_bookItem'])" class="cart-item-number-btn minusBtn" type="submit" name="minusBtn"> - </button>
-                    <p class="cart-item-number-text amount-Cart"><?php echo $value["Amount"]; ?></p>
-                    <button class="cart-item-number-btn plusBtn" name="plusBtn"> + </button>
+                    <p class="cart-item-number-text <?php echo 'amount-Cart' . $value["Id_bookItem"] . ''; ?>">
+                        <?php echo $value["Amount"]; ?>
+                    </p>
+                    <!-- viết hàm plusBookItem nhận id_bookItem cần thêm vào rồi gọi trong main.js và Ajax.j-->
+                    <button onclick="plusBookItem(<?php echo $value['Id_bookItem'] ?>)" class="cart-item-number-btn plusBtn" name="plusBtn"> + </button>
 
                 </span>
-                <p class="cart-item-sum-money"><?php echo ($value["Amount"] * $priceDiscount); ?> ₫</p>
+                <p class="cart-item-sum-money <?php echo 'sumMoney' . $value["Id_bookItem"] . ''; ?>">
+                    <?php echo ($value["Amount"] * $priceDiscount); ?> ₫
+                </p>
                 <div class="cart-item-delete">
-                    <i class="fas fa-trash cart-item-delete-icon"></i>
+                    <a href="http://localhost/bookstore-mvc/Cart/DeleteCartByIdBookItem/<?php echo $value["Id_bookItem"]; ?>">
+                        <i class="fas fa-trash cart-item-delete-icon"></i>
+                    </a>
                 </div>
             </div>
         <?php } ?>

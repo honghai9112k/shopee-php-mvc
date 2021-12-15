@@ -12,16 +12,29 @@ class Ajax extends Controller
     public function checkUsername()
     {
         $un = $_POST["un"];
-        if($this->customerDao->checkUsername($un)=='true'){
+        if ($this->customerDao->checkUsername($un) == 'true') {
             echo "Username đã tồn tại.";
         }
     }
-    public function minusItem() {
+    public function minusItem()
+    {
         $idBookItem = $_POST["id"];
-        $check= $this->cartDao->MinusItem($idBookItem);
+        $check = $this->cartDao->MinusItem($idBookItem);
         if ($check) {
-            echo '<h1>'.$check.'</h1>';
-        }else {
+            echo $check;
+        } else if ($check == "0") {
+            echo "0";
+        } else {
+            echo "Fall";
+        }
+    }
+    public function plusItem()
+    {
+        $idBookItem = $_POST["id"];
+        $check = $this->cartDao->PlusItem($idBookItem);
+        if ($check) {
+            echo $check;
+        } else {
             echo "Fall";
         }
     }
