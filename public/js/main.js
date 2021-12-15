@@ -55,6 +55,15 @@ function reloadMoney (Id_bookItem, newPrice, newMount) {
     $(classMoneCart).html(sumMoney);
 }
 
+// click Mua hàng tại listcart
+function handerOrderBtn(checkUser){
+    // alert ("Vui lòng đăng nhập.!!!")
+    if(checkUser==0) {
+        alert ("Vui lòng đăng nhập.!!!")
+    }else {
+        window.location.href = "http://localhost/bookstore-mvc/Order";
+    }
+}
 
 
 

@@ -85,7 +85,7 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
                         Thêm Vào Giỏ Hàng
                     </button>
                     <!-- <button id="addCartBtn">click me</button> -->
-                    <button id="orderBtn" name="orderBtn" class="btn btn--primary">Mua Ngay</button>
+                    <button id="orderCartBtn" name="orderCartBtn" class="btn btn--primary" type="submit">Mua Ngay</button>
                     <div class="checkorder"></div>
                 </div>
             </form>

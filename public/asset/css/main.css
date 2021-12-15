@@ -1581,7 +1581,7 @@ i.home-product-item__like-icon-fill {
     margin-left: 16px;
 }
 
-#orderBtn {
+#orderCartBtn {
     padding: 20.55px 41px;
     margin-bottom: 6px;
 }
@@ -1666,7 +1666,7 @@ i.home-product-item__like-icon-fill {
     text-transform: capitalize;
     margin-bottom: 12 px;
     color: #888;
-    padding: 30px 0;
+    padding: 16px 0;
 }
 
 .stardust-checkbox {
@@ -1759,4 +1759,218 @@ i.home-product-item__like-icon-fill {
     stroke: #000;
     margin-left: 20px;
     margin-right: -10px;
+}
+
+.link-white {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Order */
+.headerOrder {
+    font-size: 16px;
+    align-items: center;
+}
+
+.order:before {
+    content: "";
+    top: 1px;
+    position: absolute;
+    left: 0;
+    height: 3px;
+    width: 1100px;
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+}
+
+.order {
+    position: relative;
+}
+
+.headerTitle {
+    color: #ee4d2d;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.icon-location-marker {
+    fill: #ee4d2d;
+    font-size: 20px;
+}
+
+.header-content {
+    display: flex;
+}
+
+.header-text1 {
+    width: 10%;
+    font-weight: 500;
+}
+
+.header-text {
+    width: 10%;
+    margin-left: 15px;
+    color: #666;
+}
+
+.selectAddressOrder {
+    margin-top: -10px;
+    width: 40%;
+}
+
+.title-content {
+    color: rgba(0, 0, 0, .8);
+    width: 46.27949%;
+    font-size: 20px;
+}
+
+.row1-1 {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #eee;
+    padding: 12px 0;
+    font-size: 15px;
+}
+
+.row1-2 {
+    border-top: 1px solid #eee;
+    padding: 12px 10px;
+    font-size: 15px;
+    width: 1100px;
+    margin-left: -20px;
+    background-color: #fafdff;
+}
+
+.shipment-container {
+    display: flex;
+    padding: 16px 0;
+}
+
+.mess-container {
+    flex: 4;
+    display: flex;
+    align-items: center;
+}
+
+.shipment-grid {
+    flex: 6;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 24px 24px 24px;
+    margin-left: 30px;
+    margin-right: 16px;
+}
+
+.child1 {
+    min-width: 0;
+    min-height: 0;
+    padding-left: 20 px;
+    display: flex;
+    flex: 0 0 auto;
+    color: #00bfa5;
+}
+
+.child3 {
+    flex: 0 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    color: #05a;
+}
+
+.child4 {
+    padding-right: 30 px;
+    flex: 1;
+    text-align: right;
+    font-size: 14px;
+    color: #222;
+}
+
+.child5 {
+    grid-column: 2/4;
+    grid-row: 2/3;
+    margin-top: 5 px;
+    font-size: 12px;
+    color: #888;
+}
+
+.child6 {
+    grid-column: 2/5;
+    grid-row: 3/4;
+    margin-top: 5 px;
+    color: #929292;
+    font-size: 13px;
+}
+
+.sumPriceOrder {
+    display: flex;
+    justify-content: end;
+    border-top: 1px solid #b4b4b4;
+    padding: 20px 0;
+}
+
+.sumPriceOrderText {
+    font-size: 20px;
+    color: #ee4d2d;
+    font-weight: 500;
+    margin: 0 12px 0 112px;
+}
+
+.sumtitle {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #929292;
+}
+
+.voucher-container,
+.payment-container,
+.btn-order-container {
+    width: 1100px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 2;
+    font-size: 16px;
+    bottom: 0;
+}
+
+.row1-voucher {
+    padding-bottom: 12px;
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.row2-voucher {
+    padding: 10px 0px 10px;
+    display: flex;
+    opacity: 0.5;
+}
+
+.checkbox-payment {
+    flex: 1;
+}
+
+.row2-order {
+    padding: 10px 0px 10px;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.sumMoneyOrder {
+    margin-left: 48px;
+    font-size: 28px;
+    color: #ee4d2d;
+}
+
+.row3-order {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px -40px 20px -40px;
+}
+.orderBtn {
+    padding: 20px 66px;
+    font-size: 20px;
+    margin-right: 40px;
 }
