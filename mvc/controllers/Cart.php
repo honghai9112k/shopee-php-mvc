@@ -37,7 +37,7 @@ class Cart extends Controller
     }
     function AddItemToCart($id_bookItem)
     {
-        if (isset($_POST['addCartBtn'])) {
+        if (isset($_POST['addCartBtn'])||isset($_POST['orderCartBtn']) ) {
             $Amount = $_POST['Amount'];
             $cartDao = $this->dao("CartDao");
             $check = $cartDao->AddItemToCart($id_bookItem, $Amount);

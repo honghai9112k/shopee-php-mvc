@@ -1,8 +1,14 @@
 <?php
 $cart = [];
-
 if (isset($_SESSION["cart"])) {
     $cart = $_SESSION["cart"];
+}
+
+$user = [];
+$checkUser = 0;
+if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+    $checkUser = 1;
 }
 
 ?>
@@ -123,6 +129,10 @@ if (isset($_SESSION["cart"])) {
         <a class="linkcart" href="">Bỏ sản phẩm không hoạt động</a>
         <a class="linkcart" href="" style="color: #ee4d2d">Lưu vào mục Đã thích</a>
         <span>Tổng thanh toán(0 sản phẩm): đ</span>
-        <button class="btn btn--primary orderbtnCart">Mua Hàng</button>
+        <button class="btn btn--primary orderbtnCart" onclick="handerOrderBtn( <?php echo $checkUser; ?>)">
+        <!-- <a href="http://localhost/bookstore-mvc/Order" class="link-white"> -->
+            Mua Hàng
+        <!-- </a>     -->
+        </button>
     </div>
 </div>

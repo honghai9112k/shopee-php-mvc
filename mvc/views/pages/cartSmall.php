@@ -4,7 +4,9 @@ $cart = [];
 
 if (isset($_SESSION["cart"])) {
     $cart = $_SESSION["cart"];
-    // $fetchCart = mysqli_fetch_assoc($cart);
+    if (!empty($_SESSION["cart"])) {
+        $fetchCart = mysqli_fetch_assoc($cart);
+    }
 }
 // foreach ($cart as $key => $value) {
 //     echo $value["Title"];}
@@ -17,7 +19,7 @@ if (isset($_SESSION["cart"])) {
         <div class="header__cart-wrap">
             <i class="header__cart-icon fas fa-shopping-cart"></i>
             <span class="header__cart-notice countItemCart" id="">0</span>
-            <div class="header__cart-list" onclick="renderCart()" style="cursor: pointer">
+            <div class="header__cart-list" style="cursor: pointer">
                 <div>
                     <img src="http://localhost/bookstore-mvc/public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
                     <p class="header__cart-list--no-cart-msg">
@@ -26,11 +28,11 @@ if (isset($_SESSION["cart"])) {
                 </div>
             </div>
         </div>
-    <?php } else { ?>
+    <?php } else if (isset($fetchCart["CountItem"])) { ?>
         <!-- Đã thêm -->
         <div class="header__cart-wrap">
             <i class="header__cart-icon fas fa-shopping-cart"></i>
-            <span class="header__cart-notice countItemCart" id=""> <?php echo (isset($fetchCart["CountItem"]))? $fetchCart["CountItem"]:""; ?></span>
+            <span class="header__cart-notice countItemCart" id=""> <?php echo (isset($fetchCart["CountItem"])) ? $fetchCart["CountItem"] : "0"; ?></span>
             <div class="header__cart-list">
                 <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
                 <ul class="header__cart-list-item">
@@ -44,7 +46,7 @@ if (isset($_SESSION["cart"])) {
                                     <div class="header__cart-item-price-wrap">
                                         <span class="header__cart-item-price"><?php echo ($value["Price"] * (100 - $value["Discount"]) / 100) ?> đ</span>
                                         <span class="header__cart-item-multiply">x</span>
-                                        <span class="header__cart-item-qnt  <?php echo 'amount-cartsmall'.$value["Id_bookItem"].''; ?>"><?php echo $value["Amount"]; ?></span>
+                                        <span class="header__cart-item-qnt  <?php echo 'amount-cartsmall' . $value["Id_bookItem"] . ''; ?>"><?php echo $value["Amount"]; ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -59,6 +61,18 @@ if (isset($_SESSION["cart"])) {
                 </button>
             </div>
         </div>
+    <?php } else { ?>
+        <div class="header__cart-wrap">
+            <i class="header__cart-icon fas fa-shopping-cart"></i>
+            <span class="header__cart-notice countItemCart" id="">0</span>
+            <div class="header__cart-list" style="cursor: pointer">
+                <div>
+                    <img src="http://localhost/bookstore-mvc/public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
+                    <p class="header__cart-list--no-cart-msg">
+                        Chưa có sản phẩm
+                    </p>
+                </div>
+            </div>
+        </div>
     <?php } ?>
-
 </div>

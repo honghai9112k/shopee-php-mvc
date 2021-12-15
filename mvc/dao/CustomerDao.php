@@ -56,8 +56,8 @@ class CustomerDao extends DB implements Customer_Implement
         $username = $accLogin->getUsername();
         $password = $accLogin->getPassword();
 
-        $sql = "SELECT account.*, customer.Id_customer, customer.Name, customer.Phone, customer.Mail, customer.AddressId FROM account JOIN customer 
-        ON Username = '$username' AND account.CustomerId=customer.Id_customer";
+        $sql = "SELECT account.*, customer.Id_customer, customer.Name, customer.Phone, customer.Mail, customer.AddressId, address.* FROM account JOIN customer 
+        JOIN address ON Username = '$username' AND account.CustomerId=customer.Id_customer AND address.Id_address=customer.AddressId";
         $query = mysqli_query($this->con, $sql);
         $data = mysqli_fetch_assoc($query);
         $checkUn = mysqli_num_rows($query);
