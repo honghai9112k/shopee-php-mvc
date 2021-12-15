@@ -44,7 +44,7 @@ if (isset($_SESSION["cart"])) {
                                     <div class="header__cart-item-price-wrap">
                                         <span class="header__cart-item-price"><?php echo ($value["Price"] * (100 - $value["Discount"]) / 100) ?> đ</span>
                                         <span class="header__cart-item-multiply">x</span>
-                                        <span class="header__cart-item-qnt"><?php echo $value["Amount"]; ?></span>
+                                        <span class="header__cart-item-qnt  <?php echo 'amount-cartsmall'.$value["Id_bookItem"].''; ?>"><?php echo $value["Amount"]; ?></span>
                                     </div>
                                 </div>
                             </div>

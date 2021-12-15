@@ -40,29 +40,37 @@ class Cart extends Controller
         if (isset($_POST['addCartBtn'])) {
             $Amount = $_POST['Amount'];
             $cartDao = $this->dao("CartDao");
-            $check = $cartDao->AddItemToCart($id_bookItem, $Amount );
+            $check = $cartDao->AddItemToCart($id_bookItem, $Amount);
             if ($check) {
                 $bookItemDao = $this->dao("BookItemDao");
                 $bookId = $bookItemDao->GetBookByIdBookItem($id_bookItem)["Id_book"];
-                header('location: http://localhost/bookstore-mvc/Product/Show/'.$bookId.'');
+                header('location: http://localhost/bookstore-mvc/Product/Show/' . $bookId . '');
             } else {
-                $this->view("404Page", [
-                ]);
+                $this->view("404Page", []);
             }
-        }else {
+        } else {
             // header('location: http://localhost/bookstore-mvc/Error');
-            $this->view("404Page", [
-            ]);
+            $this->view("404Page", []);
         }
     }
-    public function DeleteAllCart(){
+    public function DeleteAllCart()
+    {
         $cartDao = $this->dao("CartDao");
         $check = $cartDao->DeleteAllCart();
-        if($check) {
+        if ($check) {
             header('location: http://localhost/bookstore-mvc/Home');
-        }else {
-            $this->view("404Page", [
-            ]);
+        } else {
+            $this->view("404Page", []);
+        }
+    }
+    public function DeleteCartByIdBookItem($BookItemId)
+    {
+        $cartDao = $this->dao("CartDao");
+        $check = $cartDao->DeleteCartByIdBookItem($BookItemId);
+        if ($check) {
+            header('location: http://localhost/bookstore-mvc/Cart');
+        } else {
+            $this->view("404Page", []);
         }
     }
 }
