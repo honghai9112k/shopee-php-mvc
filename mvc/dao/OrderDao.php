@@ -20,5 +20,39 @@ class OrderDao extends DB implements Order_Implement
         $_SESSION['cart'] = $query;
         return $query;
     }
+    public function CreateOrder(OrderModel $newOrder)
+    {
+        $Id_payment = $newOrder->getPaymentId();
+        $ShipmentId = $newOrder->getShipmentId();
+        $CustomerId = $newOrder->getCustomerId();
+        $CartId = $newOrder->getCartId();
+        $TotalPrice = $newOrder->getTotalPrice();
+        $Status = $newOrder->getStatus();
+        $DeliveryDate = $newOrder->getDeliveryDate();
 
+        $qr_order = "INSERT INTO `order` (Id_order, PaymentId, ShipmentId, CustomerId, CartId, TotalPrice, Status, DeliveryDate) 
+        VALUES (NULL, '$Id_payment', '$ShipmentId', '$CustomerId', '$CartId', '$TotalPrice', '$Status', '$DeliveryDate')";
+        $result =  mysqli_query($this->con, $qr_order);
+        return $result;
+    }
+    public function plusSoldNumberBook($CartId)
+    {
+        // Lấy ra các Id book
+        // thêm
+    }
+    public function GetAllOrder()
+    {
+        $sql = "SELECT `order`.* , bookitem.*, book.Title, shipment.Cost, cart_bookitem.*, bookcategory.Name AS 'NameCate'  FROM `order`,bookitem,book,shipment,cart, cart_bookitem, bookcategory
+        WHERE `order`.ShipmentId = shipment.Id_shipment AND `order`.CartId = cart.Id_cart AND  
+        cart_bookitem.CartId = cart.Id_cart AND cart_bookitem.BookItemId = bookitem.Id_bookItem 
+        AND bookitem.BookId = book.Id_book AND bookcategory.Id_category = book.BookCategoryId";
+        $query = mysqli_query($this->con, $sql);
+        return $query;
+    }
+    public function DeleteOrder($Id_order)
+    {
+        $sql = "DELETE FROM `order` WHERE Id_order='$Id_order'";
+        $query = mysqli_query($this->con, $sql);
+        return $query;
+    }
 }

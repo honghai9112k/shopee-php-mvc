@@ -3,11 +3,13 @@ class Ajax extends Controller
 {
     public $customerDao;
     public $cartDao;
+    public $shipmentDao;
 
     public function __construct()
     {
         $this->customerDao = $this->dao("CustomerDao");
         $this->cartDao = $this->dao("CartDao");
+        $this->shipmentDao = $this->dao("ShipmentDao");
     }
     public function checkUsername()
     {
@@ -34,6 +36,15 @@ class Ajax extends Controller
         $check = $this->cartDao->PlusItem($idBookItem);
         if ($check) {
             echo $check;
+        } else {
+            echo "Fall";
+        }
+    }
+    public function priceShipment() {
+        $Id_address = $_POST['idAdress'];
+        $shipment = $this->shipmentDao->GetShipmentByAdress($Id_address)['Cost'];
+        if ($shipment) {
+            echo $shipment;
         } else {
             echo "Fall";
         }

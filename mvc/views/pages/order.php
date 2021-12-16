@@ -9,14 +9,19 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
     $user = $_SESSION["user"];
 }
 
+$shipmentSession = [];
+if (isset($data["ShipmentSesstion"])) {
+    $shipmentSession = $data["ShipmentSesstion"];
+}
+
 $allAddress = [];
 // $allAddress = $data['Address'];
 $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
 
 ?>
 <div class="_1G9Cv7"></div>
-<form action="" role="form" method="POST" name="formOrder" id="formOrder">
-    <div class="cart order" style="position: relative;">
+<form role="form" method="POST" name="formOrder" id="formOrder" action="./Order/CreateOrder">
+    <div class=" order" style="position: relative;">
         <div class="headerOrder">
             <p class="headerTitle">
                 <svg height="20" viewBox="0 0 16 20" width="16" class="shopee-svg-icon icon-location-marker">
@@ -29,7 +34,7 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                 <p class="header-text1"><?php echo $user['Name'] ?></p>
                 <p class="header-text1"><?php echo $user['Phone'] ?></p>
                 <div class="auth-form__group form-group selectAddressOrder">
-                    <select class="custom-select my-1 mr-sm-2" id="addressIdOrder" name="addressIdOrder" style="font-size: 12px;height: 42px;color: #666;">
+                    <select class="custom-select my-1 mr-sm-2" id="addressIdOrder" name="addressIdOrder" style="font-size: 12px;height: 42px;color: #666;" onchange="handerChangeAddress();">
                         <option selected>Chọn địa chỉ của bạn</option>
                         <?php
                         foreach ($allAddress as $key => $value) { ?>
@@ -58,15 +63,20 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
 
         <div class="listCart">
             <?php
+            $sumOderNotShip = 0;
+            // tổng tiền các item cart chưa tính ship.
             foreach ($cart as $key => $value) {
-                $priceDiscount = $value["Price"] * (100 - $value["Discount"]) / 100; ?>
+                $priceDiscount = $value["Price"] * (100 - $value["Discount"]) / 100;
+                $sumMoney = $value["Amount"] * $priceDiscount;
+                $sumOderNotShip = $sumOderNotShip + $sumMoney;
+            ?>
                 <div class="cart-item">
                     <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value["Image"]; ?>" alt="">
                     <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
                     <div class="cart-item-price">
                         <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
 
-                        <input type="hidden" class="form-control" id="<?php echo 'newPrice' . $value["Id_bookItem"] . ''; ?>" value="<?php echo $priceDiscount ?>" name="newPrice" style="width:0%" readonly>
+                        <input type="hidden" class="form-control" id="<?php echo 'newPrice' . $value["Id_bookItem"] . ''; ?>" value="<?php echo $priceDiscount ?>" style="width:0%" readonly>
                         <p class="cart-item-price-sale <?php echo 'newPrice' . $value["Id_bookItem"] . ''; ?>"><?php echo $priceDiscount ?> ₫</p>
 
                     </div>
@@ -82,8 +92,9 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                         <button onclick="" class="cart-item-number-btn plusBtn" name="plusBtn"> + </button>
 
                     </span>
-                    <p class="cart-item-sum-money <?php echo 'sumMoney' . $value["Id_bookItem"] . ''; ?>">
-                        <?php echo ($value["Amount"] * $priceDiscount); ?> ₫
+                    <input type="hidden" class="form-control" id="<?php echo 'sumMoneyNotShip' . $key . ''; ?>" value="<?php echo $sumMoney; ?>" name="countCart" style="width:0%" readonly>
+                    <p id="abc" class="cart-item-sum-money <?php echo 'sumMoneyNotShip' . $key . ''; ?>">
+                        <?php echo ($sumMoney); ?>
                     </p>
                     <div class="cart-item-delete">
                         <a href="http://localhost/bookstore-mvc/Cart/DeleteCartByIdBookItem/<?php echo $value["Id_bookItem"]; ?>">
@@ -125,18 +136,22 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                             <div class="child1">Đơn vị vận chuyển:</div>
                             <div class="child2">Nhanh</div>
                             <div class="child3">Thay đổi</div>
-                            <div class="child4">₫16.500</div>
+                            <div class="child4"> <span>₫</span><span class="costShipment"><?php echo $shipmentSession['Cost'] ?></span> </div>
                             <div class="child5">Nhận hàng vào 17 Th12 - 24 Th12</div>
                             <div class="child6">(Nhanh tay vào ngay "Shopee Voucher" để săn mã Miễn phí vận chuyển nhé!)</div>
                         </div>
                     </div>
                     <div class="sumPriceOrder">
                         <span class="sumtitle">Tổng số tiền :</span>
-                        <span class="sumPriceOrderText">50000 đ</span>
+                        <div class="sumPriceOrderText">
+                            <span class="sumCostOrder<?php echo $key; ?>"><?php echo ($shipmentSession['Cost'] + $sumMoney); ?>
+                            </span><span>đ</span>
+                        </div>
                     </div>
                 </div>
                 <div class="cart-item cart-space"></div>
-            <?php } ?>
+            <?php } ?><input type="hidden" class="form-control" id="countCart" value="<?php echo mysqli_num_rows($cart); ?>" name="countCart" style="width:0%" readonly>
+            <input type="hidden" class="form-control" id="sumOderNotShip" value="<?php echo $sumOderNotShip; ?>" style="width:0%" readonly>
         </div>
     </div>
 
@@ -179,21 +194,21 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
     <div class="payment-container" style="display: flex;">
         <span style="margin-right: 90px; font-size:20px;flex:1.2; ">Phương thức thanh toán: </span>
         <div class="form-check checkbox-payment">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="nganhang" value="nganhang" checked>
+            <input class="form-check-input" type="radio" name="radioPayment" id="tienmat" value="1" checked>
+            <label class="form-check-label" for="tienmat">
+                Thanh toán khi nhận hàng
+            </label>
+        </div>
+        <div class="form-check checkbox-payment">
+            <input class="form-check-input" type="radio" name="radioPayment" id="nganhang" value="2">
             <label class="form-check-label" for="nganhang">
                 Ví ShopeePay (Liên kết tài khoản ngân hàng)
             </label>
         </div>
         <div class="form-check checkbox-payment">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="tindung" value="tindung">
+            <input class="form-check-input" type="radio" name="radioPayment" id="tindung" value="3">
             <label class="form-check-label" for="tindung">
                 Thẻ tín dụng/Ghi nợ
-            </label>
-        </div>
-        <div class="form-check checkbox-payment">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="tienmat" value="tienmat">
-            <label class="form-check-label" for="tienmat">
-                Thanh toán khi nhận hàng
             </label>
         </div>
 
@@ -203,23 +218,23 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
     <div class="btn-order-container">
         <div class="row1">
             <span style="margin-right: 90px; ">Tổng tiền hàng</span>
-            <span style="color: #05a;">700000 đ</span>
+            <span style="color: #05a;"><?php echo ($sumOderNotShip) ?>đ</span>
         </div>
         <div class="row2-order">
             <span style="margin-right: 48px; ">Phí vận chuyển</span>
-            <span style="margin-left: 48px;">20000 đ</span>
+            <span style="margin-left: 48px;" class="costShipment"><?php echo ($shipmentSession['Cost']); ?></span><span>đ</span>
         </div>
         <div class="row2-order">
             <span style="margin-right: -12px; ">Tổng thanh toán</span>
-            <span class="sumMoneyOrder">800000 đ</span>
+            <div class="sumMoneyOrder">
+                <span class="sumMoneyOrdertxt"><?php echo ($sumOderNotShip + $shipmentSession['Cost']) ?></span><span>đ</span>
+                <input type="hidden" class="form-control" id="TotalPrice" name="TotalPrice" value="<?php echo ($sumOderNotShip + $shipmentSession['Cost']); ?>" style="width:0%" readonly>
+            </div>
+
         </div>
         <div class="row3-order">
-        <span style="margin-left: 44px;">Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopee</span>
-            <button class="btn btn--primary orderBtn">
-                <a href="http://localhost/bookstore-mvc/Order" class="link-white">
-                    Đặt Hàng
-                </a>
-            </button>
+            <span style="margin-left: 44px;">Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopee</span>
+            <button class="btn btn--primary orderBtn" type="submit" name="orderButton">Đặt Hàng</button>
         </div>
     </div>
 </form>

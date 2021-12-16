@@ -28,9 +28,9 @@ function minusBookItem(Id_bookItem) {
     $.post("./Ajax/minusItem", { id: idBookItem }, function (data1) {
         var classAmount = '.amount-Cart' + Id_bookItem;
         $(classAmount).html(data1);
-        var classSmallCartAmount = '.amount-cartsmall'+ Id_bookItem;
+        var classSmallCartAmount = '.amount-cartsmall' + Id_bookItem;
         $(classSmallCartAmount).html(data1);
-        reloadMoney(Id_bookItem,newPrice,data1); 
+        reloadMoney(Id_bookItem, newPrice, data1);
     })
 }
 function plusBookItem(Id_bookItem) {
@@ -43,31 +43,60 @@ function plusBookItem(Id_bookItem) {
     $.post("./Ajax/plusItem", { id: idBookItem }, function (data1) {
         var classAmount = '.amount-Cart' + Id_bookItem;
         $(classAmount).html(data1);
-        var classSmallCartAmount = '.amount-cartsmall'+ Id_bookItem;
+        var classSmallCartAmount = '.amount-cartsmall' + Id_bookItem;
         $(classSmallCartAmount).html(data1);
-        reloadMoney(Id_bookItem,newPrice,data1);       
+        reloadMoney(Id_bookItem, newPrice, data1);
     })
 }
 // Load lại tổng giá tiền mới sau khi click + -
-function reloadMoney (Id_bookItem, newPrice, newMount) {
-    var classMoneCart = '.sumMoney'+ Id_bookItem;
-    var sumMoney = newPrice*newMount;
+function reloadMoney(Id_bookItem, newPrice, newMount) {
+    var classMoneCart = '.sumMoney' + Id_bookItem;
+    var sumMoney = newPrice * newMount;
     $(classMoneCart).html(sumMoney);
 }
 
 // click Mua hàng tại listcart
-function handerOrderBtn(checkUser){
-    // alert ("Vui lòng đăng nhập.!!!")
-    if(checkUser==0) {
-        alert ("Vui lòng đăng nhập.!!!")
-    }else {
+function handerOrderBtn(checkUser) {
+    if (checkUser == 0) {
+        alert("Vui lòng đăng nhập.!!!")
+    } else {
         window.location.href = "http://localhost/bookstore-mvc/Order";
     }
 }
+// Reload price shipment khi thay đổi address
+$(document).ready(function () {
+    $('#addressIdOrder').on('change', function () {
+        var Id_address = this.value;
 
+        var count = $("#countCart").val();
 
+        $.post("./Ajax/priceShipment", { idAdress: Id_address }, function (data2) {
+            $(".costShipment").html(data2);
+            sumCostnotShip(data2);
+            sumPriceOrder(data2)
+        })
+    })
+});
 
+function sumCostnotShip(shipcost) {
+    var count = $("#countCart").val();
+    for (let i = 0; i < count; i++) {
+        var classCost = ".sumCostOrder" + i;
+        var idCost = "#sumMoneyNotShip" + i;
 
+        var sumMoneyNotShip = $(idCost).val();
+
+        var sumCost = Number(sumMoneyNotShip) + Number(shipcost);
+        $(classCost).html(sumCost);
+    }
+}
+
+function sumPriceOrder(shipcost) {
+    var sumOderNotShip = $("#sumOderNotShip").val();
+    var sumPriceOrder = Number(sumOderNotShip) + Number(shipcost);
+        $(".sumMoneyOrdertxt").html(sumPriceOrder);
+}
+// 
 
 
 
