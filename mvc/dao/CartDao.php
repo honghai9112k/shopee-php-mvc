@@ -29,6 +29,12 @@ class CartDao extends DB implements Cart_Implement
         $data = mysqli_fetch_assoc($query);
         return $data["CountItem"];
     }
+    public function GetCartId() {
+        $sql = "SELECT DISTINCT cart_bookitem.CartId FROM cart_bookitem ";
+        $query = mysqli_query($this->con, $sql);
+        $data = mysqli_fetch_assoc($query);
+        return $data['CartId'];
+    }
     /*
     SELECT book.*, bookitem.*,author.*,publisher.*,bookcategory.*  FROM book JOIN bookitem JOIN author JOIN book_author JOIN publisher JOIN bookcategory ON 
         book.Id_book =bookitem.BookId AND 

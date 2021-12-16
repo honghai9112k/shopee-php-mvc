@@ -18,8 +18,12 @@ class User extends Controller
         $bookDao = $this->dao("BookDao");
         $allBook = $bookItemDao->getAllBookJoin();
         $bookCategory = $bookDao->GetAllBookCategory();
+
         $cartDao = $this->dao("CartDao");
         $cart = $cartDao->GetCart();
+
+        $orderDao = $this->dao("OrderDao");
+        $order = $orderDao->GetAllOrder();
 
         $this->view("userHome", [
             "Page" => "listProducts",
@@ -27,6 +31,7 @@ class User extends Controller
             "Book" => $allBook,
             "Address" => $address,
             "BookCategory" => $bookCategory,
+            "Order"=>$order,
         ]);
 
     }

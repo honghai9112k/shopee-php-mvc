@@ -165,7 +165,10 @@
             <div style="text-align: center;">
                 <p style="color: red;"><?php if(isset($data["Err"])){ echo empty($data["Err"]) ?"" :"Vui lòng điền đầy đủ thông tin";    } ?></p>
                 <p style="color: red;"><?php if(isset($data["Check"])){ echo empty($data["Check"]["faultPass"]) ? "Không tồn tại Username." :$data["Check"]["faultPass"] ;    } ?></p>
-                <!-- <p style="color: red;"><?php echo $data["Err"];?></p> -->
+                <p style="color: red;"><?php echo $data["Err"];?></p>
+                <!-- <p style="color: red;"><?php echo date('Y/m/d', mktime(0, 0, 0,date('m'), (date('d')+1) , date('Y')));?></p> -->
+                
+                
             </div>
             <div style="text-align: center;">
                 <button class="btn btn--primary">
