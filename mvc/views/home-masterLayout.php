@@ -113,15 +113,12 @@ if (!empty($bookFind)) {
 
                     <div class="header__search">
                         <div class="header__search-input-wrap">
-                            <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
+                            <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm" id="txtSearch">
                             <div class="header__search-history">
                                 <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
                                 <ul class="header__search-history-list">
                                     <li href="" class="header__search-history-item">
-                                        <a href="" class="header__search-history-item-link">Kem dưỡng da</a>
-                                    </li>
-                                    <li href="" class="header__search-history-item">
-                                        <a href="" class="header__search-history-item-link">Kem trị mụn</a>
+                                        <!-- <a href="" class="header__search-history-item-link">Sách</a> -->
                                     </li>
                                 </ul>
                             </div>

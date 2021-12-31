@@ -569,7 +569,6 @@ label,
 
 .header__search-input-wrap {
     flex: 1;
-    height: 40%;
     position: relative;
 }
 
@@ -578,8 +577,9 @@ label,
     border: none;
     outline: none;
     font-size: 1.4rem;
-    padding: 0 16px;
     border-radius: 3px;
+    height: 100%;
+    padding: 10px 16px 10px 16px;
 }
 
 .header__search-select {

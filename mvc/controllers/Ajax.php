@@ -4,12 +4,16 @@ class Ajax extends Controller
     public $customerDao;
     public $cartDao;
     public $shipmentDao;
+    public $bookDao;
+    public $bookItemDao;
 
     public function __construct()
     {
         $this->customerDao = $this->dao("CustomerDao");
         $this->cartDao = $this->dao("CartDao");
         $this->shipmentDao = $this->dao("ShipmentDao");
+        $this->bookDao = $this->dao("BookDao");
+        $this->bookItemDao = $this->dao("BookItemDao");
     }
     public function checkUsername()
     {
@@ -40,13 +44,38 @@ class Ajax extends Controller
             echo "Fall";
         }
     }
-    public function priceShipment() {
+    public function priceShipment()
+    {
         $Id_address = $_POST['idAdress'];
         $shipment = $this->shipmentDao->GetShipmentByAdress($Id_address)['Cost'];
         if ($shipment) {
             echo $shipment;
         } else {
             echo "Fall";
+        }
+    }
+    public function searchProduct()
+    {
+        $key = $_POST['key'];
+        $book = $this->bookDao->searchBook($key);
+        $bookCategory = $this->bookDao->GetAllBookCategory();
+        $cart =  $this->cartDao->GetCart();
+        require_once "./mvc/views/pages/listProducts.php";
+    }
+    public function GetBookCategory()
+    {
+        $id = $_POST['idCategory'];
+        if ($id) {
+            $book = $this->bookDao->GetBookCategory($id);
+            $bookCategory = $this->bookDao->GetAllBookCategory();
+            $cart =  $this->cartDao->GetCart();
+            $cateId = $id;
+            require_once "./mvc/views/pages/listProducts.php";
+        } else {
+            $book = $this->bookItemDao->getAllBookJoin();
+            $bookCategory = $this->bookDao->GetAllBookCategory();
+            $cart =  $this->cartDao->GetCart();
+            require_once "./mvc/views/pages/listProducts.php";
         }
     }
 }
