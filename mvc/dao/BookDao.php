@@ -177,4 +177,40 @@ class BookDao extends DB implements Book_Implement
         }
         return json_encode($result);
     }
+    public function searchBook($key)
+    {
+        $sql = "SELECT book.*, bookitem.*,
+        bookcategory.Name AS 'CategoryName', 
+        publisher.Name AS 'publisherName', publisher.Address AS 'publisherAddress',
+        author.Name AS 'AuthorName',author.Id_author AS 'AuthorId', author.Email AS 'AuthorEmail', author.Biography
+        FROM book, bookitem , bookcategory,publisher, author, book_author
+        WHERE 
+                book.Id_book =bookitem.BookId AND 
+                book.BookCategoryId =bookcategory.Id_category AND 
+                book.PublisherId = publisher.Id_publisher AND
+                author.Id_author =book_author.AuthorId AND
+                book.Id_book =book_author.BookId AND
+                book.Title like '%$key%'
+        ";
+        $query = mysqli_query($this->con, $sql);
+        return $query;
+    }
+    public function GetBookCategory($idCategory)
+    {
+        $sql = "SELECT book.*, bookitem.*,
+        bookcategory.Name AS 'CategoryName', 
+        publisher.Name AS 'publisherName', publisher.Address AS 'publisherAddress',
+        author.Name AS 'AuthorName',author.Id_author AS 'AuthorId', author.Email AS 'AuthorEmail', author.Biography
+        FROM book, bookitem , bookcategory,publisher, author, book_author
+        WHERE 
+                book.Id_book =bookitem.BookId AND 
+                book.BookCategoryId =bookcategory.Id_category AND 
+                book.PublisherId = publisher.Id_publisher AND
+                author.Id_author =book_author.AuthorId AND
+                book.Id_book =book_author.BookId AND
+                bookcategory.Id_category = '$idCategory'
+        ";
+        $query = mysqli_query($this->con, $sql);
+        return $query;
+    }
 }

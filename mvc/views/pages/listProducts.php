@@ -1,7 +1,10 @@
 <?php
-$allBoookCategory = [];
-$allBoookCategory = $data["BookCategory"];
-$allBoook = $data["Book"];
+$allBookCategory = [];
+
+$allBookCategory = (isset($bookCategory)) ? $bookCategory : $data["BookCategory"];
+
+$allBoook = (isset($book)) ? $book : $data["Book"];
+$bookCateId = (isset($cateId)) ? $cateId : 0;
 ?>
 <div class="grid">
     <div class="grid__row app__content">
@@ -12,13 +15,13 @@ $allBoook = $data["Book"];
                 </h3>
 
                 <ul class="category-list">
-                    <li class="category-item category-item--active">
-                        <a href="#" class="category-item__link">Tất cả</a>
+                    <li class="category-item <?php echo ($bookCateId) ? '' : 'category-item--active'; ?>">
+                        <a href="" class="category-item__link" id="category-item__link<?php echo 0; ?>" onclick="categoryAll(0)">Tất cả</a>
                     </li>
                     <?php
-                    foreach ($allBoookCategory as $key => $value) { ?>
-                        <li class="category-item ">
-                            <a href="#" class="category-item__link"><?php echo $value["Name"] ?></a>
+                    foreach ($allBookCategory as $key => $value) { ?>
+                        <li class="category-item <?php echo ($bookCateId == $value["Id_category"]) ? 'category-item--active' : ''; ?> ">
+                            <a href="" class="category-item__link" id="category-item__link<?php echo $value["Id_category"]; ?>" onclick="categoryAll(<?php echo $value["Id_category"] ?>)"><?php echo $value["Name"] ?></a>
                         </li>
                     <?php }
                     ?>

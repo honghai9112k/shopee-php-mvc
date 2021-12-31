@@ -94,17 +94,28 @@ function sumCostnotShip(shipcost) {
 function sumPriceOrder(shipcost) {
     var sumOderNotShip = $("#sumOderNotShip").val();
     var sumPriceOrder = Number(sumOderNotShip) + Number(shipcost);
-        $(".sumMoneyOrdertxt").html(sumPriceOrder);
+    $(".sumMoneyOrdertxt").html(sumPriceOrder);
 }
-// 
+// Tìm Kiếm
+$(document).ready(function () {
+    $("#btnSearch").click(function () {
+        var txtKey = $("#txtSearch").val();
+        $.post("./Ajax/searchProduct", { key: txtKey }, function (data) {
+            $(".app__container").html(data);
+        })
+    });
+});
+// Danh mục sản phẩm
 
+function categoryAll(id) {
+    event.preventDefault();
+    $.post("./Ajax/GetBookCategory", { idCategory: id }, function (data) {
+        $(".app__container").html(data);
+    })
+}
 
-
-
-
-
-// $("body").on("click","#addCartBtn",function(){
-    //     $.post("http://localhost/bookstore-mvc/mvc/controllers/Ajax/addCart", {}, function(data) {
-    //         $("#countItemCart").html(data);
-    //     });
-    // });
+// $("body").on("click", "#btnSearch", function () {
+//     var txtKey = $("#txtSearch").val();
+//     alert("abcv");
+//     $.post("./Ajax/searchProduct", { key: txtKey })
+// });
