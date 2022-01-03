@@ -13,10 +13,10 @@ class Home extends Controller
     // bookstore-mvc/Home
     function SayHi()
     {
-        $addressDao = $this->dao("AddressDao");
-        $bookDao = $this->dao("BookDao");
-        $bookItemDao = $this->dao("BookItemDao");
-        $cartDao = $this->dao("CartDao");
+        $addressDao = $this->logicAddress("Address_Implement");
+        $bookDao = $this->logicBook("Book_Implement");
+        $bookItemDao = $this->logicBookItem("BookItem_Implement");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
 
         $address = $addressDao->GetAllAddress();
@@ -77,7 +77,7 @@ class Home extends Controller
                 $newCus = new CustomerModel('', $addressId, $name, $phone, $mail);
                 $newAcc = new AccountModel('', '', $username, $password);
 
-                $customerDao = $this->dao("CustomerDao");
+                $customerDao = $this->logicCustomer("Customer_Implement");
                 $customerDao->createAccount($newCus, $newAcc);
             } else {
                 $this->view("404Page", [
@@ -89,7 +89,7 @@ class Home extends Controller
     // Đăng nhập
     public function LoginAccount()
     {
-        $bookDao = $this->dao("BookDao");
+        $bookDao = $this->logicBook("Book_Implement");
         $allBook = $bookDao->getAll();
         $err = [];
         // $userCheck =[];
@@ -105,7 +105,7 @@ class Home extends Controller
             }
             if (empty($err)) {
                 $accLogin = new AccountModel('', '', $username, $password);
-                $customerDao = $this->dao("CustomerDao");
+                $customerDao = $this->logicCustomer("Customer_Implement");
 
                 $userCheck = $customerDao->Login($accLogin);
                 // $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
@@ -142,7 +142,7 @@ class Home extends Controller
             $phone = $_POST['upPhone'];
 
             $customer = new CustomerModel($id_customer, $addressId, $name, $phone, $mail);
-            $customerDao = $this->dao("CustomerDao");
+            $customerDao = $this->logicCustomer("Customer_Implement");
 
             $check = $customerDao->UpdateAccount($customer);
             if ($check) {

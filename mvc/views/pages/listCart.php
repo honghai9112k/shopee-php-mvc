@@ -55,7 +55,7 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
         foreach ($cart as $key => $value) {
             $priceDiscount = $value["Price"] * (100 - $value["Discount"]) / 100; ?>
             <div class="cart-item">
-                <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value["Image"]; ?>" alt="">
+                <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="">
                 <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
                 <div class="cart-item-price">
                     <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
@@ -128,7 +128,7 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
         <a class="linkcart" href=" http://localhost/bookstore-mvc/Cart/DeleteAllCart">Xóa</a>
         <a class="linkcart" href="">Bỏ sản phẩm không hoạt động</a>
         <a class="linkcart" href="" style="color: #ee4d2d">Lưu vào mục Đã thích</a>
-        <span>Tổng thanh toán(0 sản phẩm): đ</span>
+        <span>Tổng thanh toán: đ</span>
         <button class="btn btn--primary orderbtnCart" onclick="handerOrderBtn( <?php echo $checkUser; ?>)">
         <!-- <a href="http://localhost/bookstore-mvc/Order" class="link-white"> -->
             Mua Hàng

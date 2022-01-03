@@ -39,7 +39,7 @@ if (isset($_SESSION["cart"])) {
                     <?php
                     foreach ($cart as $key => $value) { ?>
                         <li class="header__cart-item">
-                            <img src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value["Image"]; ?>" alt="" class="header__cart-img">
+                            <img src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="" class="header__cart-img">
                             <div class="header__cart-item-info">
                                 <div class="header__cart-item-head">
                                     <h5 class="header__cart-item-name"><?php echo $value["Title"]; ?></h5>

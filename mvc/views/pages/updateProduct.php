@@ -94,7 +94,7 @@ $bookFind = $data["Book"];
         </div>
         <div class="mb-4 input-group-lg">
             <label for="image" class="form-label">Ảnh sản phẩm: </label>
-            <input type="file" class="form-control" id="image" name="image" style="height: 36px;" value="<?php echo $bookFind["Image"]; ?>">
+            <input type="file" class="form-control" id="imageUp" name="imageUp" style="height: 36px;" value="<?php echo $bookFind["Image"]; ?>">
         </div>
         <div class="form-floating mb-4 input-group-lg">
             <label for="description">Description: </label>

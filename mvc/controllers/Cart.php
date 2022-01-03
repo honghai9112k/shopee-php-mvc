@@ -12,10 +12,10 @@ class Cart extends Controller
     // bookstore-mvc/Cart
     function SayHi()
     {
-        $addressDao = $this->dao("AddressDao");
-        $bookDao = $this->dao("BookDao");
-        $bookItemDao = $this->dao("BookItemDao");
-        $cartDao = $this->dao("CartDao");
+        $addressDao = $this->logicAddress("Address_Implement");
+        $bookDao = $this->logicBook("Book_Implement");
+        $bookItemDao = $this->logicBookItem("BookItem_Implement");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
 
         $address = $addressDao->GetAllAddress();
@@ -39,10 +39,10 @@ class Cart extends Controller
     {
         if (isset($_POST['addCartBtn'])||isset($_POST['orderCartBtn']) ) {
             $Amount = $_POST['Amount'];
-            $cartDao = $this->dao("CartDao");
+            $cartDao = $this->logicCart("Cart_Implement");
             $check = $cartDao->AddItemToCart($id_bookItem, $Amount);
             if ($check) {
-                $bookItemDao = $this->dao("BookItemDao");
+                $bookItemDao = $this->logicBookItem("BookItem_Implement");
                 $bookId = $bookItemDao->GetBookByIdBookItem($id_bookItem)["Id_book"];
                 header('location: http://localhost/bookstore-mvc/Product/Show/' . $bookId . '');
             } else {
@@ -55,7 +55,7 @@ class Cart extends Controller
     }
     public function DeleteAllCart()
     {
-        $cartDao = $this->dao("CartDao");
+        $cartDao = $this->logicCart("Cart_Implement");
         $check = $cartDao->DeleteAllCart();
         if ($check) {
             header('location: http://localhost/bookstore-mvc/Home');
@@ -65,7 +65,7 @@ class Cart extends Controller
     }
     public function DeleteCartByIdBookItem($BookItemId)
     {
-        $cartDao = $this->dao("CartDao");
+        $cartDao = $this->logicCart("Cart_Implement");
         $check = $cartDao->DeleteCartByIdBookItem($BookItemId);
         if ($check) {
             header('location: http://localhost/bookstore-mvc/Cart');

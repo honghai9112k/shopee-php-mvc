@@ -71,7 +71,7 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                 $sumOderNotShip = $sumOderNotShip + $sumMoney;
             ?>
                 <div class="cart-item">
-                    <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value["Image"]; ?>" alt="">
+                    <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="">
                     <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
                     <div class="cart-item-price">
                         <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
@@ -83,13 +83,13 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                     <span class="cart-item-number">
                         <input type="hidden" class="form-control" id="<?php echo 'Id_bookItem-Cart' . $value["Id_bookItem"] . ''; ?>" value="<?php echo $value['Id_bookItem'] ?>" name="Id_bookItem-Cart" style="width:0%" readonly>
                         <!-- viết hàm minusBookItem nhận id_bookItem cần thêm rồi gọi trong main.js và Ajax.js -->
-                        <button onclick="" class="cart-item-number-btn minusBtn" type="submit" name="minusBtn"> - </button>
+                        <button onclick="" class="cart-item-number-btn minusBtn" type="button" name="minusBtn"> - </button>
 
                         <p class="cart-item-number-text <?php echo 'amount-Cart' . $value["Id_bookItem"] . ''; ?>">
                             <?php echo $value["Amount"]; ?>
                         </p>
                         <!-- viết hàm plusBookItem nhận id_bookItem cần thêm vào rồi gọi trong main.js và Ajax.j-->
-                        <button onclick="" class="cart-item-number-btn plusBtn" name="plusBtn"> + </button>
+                        <button onclick="" class="cart-item-number-btn plusBtn" name="plusBtn" type="button"> + </button>
 
                     </span>
                     <input type="hidden" class="form-control" id="<?php echo 'sumMoneyNotShip' . $key . ''; ?>" value="<?php echo $sumMoney; ?>" name="countCart" style="width:0%" readonly>

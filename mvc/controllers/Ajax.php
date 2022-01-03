@@ -9,11 +9,11 @@ class Ajax extends Controller
 
     public function __construct()
     {
-        $this->customerDao = $this->dao("CustomerDao");
-        $this->cartDao = $this->dao("CartDao");
-        $this->shipmentDao = $this->dao("ShipmentDao");
-        $this->bookDao = $this->dao("BookDao");
-        $this->bookItemDao = $this->dao("BookItemDao");
+        $this->customerDao =$this->logicCustomer("Customer_Implement");
+        $this->cartDao = $this->logicCart("Cart_Implement");
+        $this->shipmentDao = $this->logicOrder("Shipment_Implement");
+        $this->bookDao = $this->logicBook("Book_Implement");
+        $this->bookItemDao= $this->logicBookItem("BookItem_Implement");
     }
     public function checkUsername()
     {
