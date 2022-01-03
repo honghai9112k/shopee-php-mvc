@@ -84,7 +84,7 @@ $id_order = 0;
                                 </div>
                                 <div class="item-order">
                                     <div class="imgOrder-container">
-                                        <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value['Image']; ?>" alt="">
+                                        <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value['Image']; ?>" alt="">
                                         <div class="detail-item-order">
                                             <p class="headerItemText"><?php echo 'Sách ' . $value['Title'] . ''; ?></p>
                                             <p style="font-size: 12px;color: rgba(0,0,0,.54);"><?php echo $value['NameCate']; ?> </p>
@@ -92,7 +92,7 @@ $id_order = 0;
                                         </div>
                                     </div>
                                     <div class="cart-item-price">
-                                        <p class="price-1item-order" style="font-size: 14px;line-height: 16px;color: rgba(0,0,0,.87);"><?php echo ($value['Price'] * $value['Discount'] / 100); ?>đ</p>
+                                        <p class="price-1item-order" style="font-size: 14px;line-height: 16px;color: rgba(0,0,0,.87);"><?php echo ($value['Price'] * (100-$value['Discount']) / 100); ?>đ</p>
                                     </div>
                                 </div>
                                 <div class="btnOrder-container">
@@ -109,7 +109,7 @@ $id_order = 0;
                                                     </defs>
                                                 </svg></div>
                                         </span>
-                                        <span class="sumPrice-text"> Tổng số tiền:</span><span class="sumPrice-item-order"><?php echo ($value['Price'] * $value['Amount'] * $value['Discount'] / 100 + $value['Cost']); ?> đ</span>
+                                        <span class="sumPrice-text"> Tổng số tiền:</span><span class="sumPrice-item-order"><?php echo ($value['Price'] * $value['Amount'] * (100-$value['Discount'])/100 + $value['Cost']); ?>đ</span>
                                     </div>
                                     <div class="d-flex last-row-order">
                                         <div style="max-width: 400px;">

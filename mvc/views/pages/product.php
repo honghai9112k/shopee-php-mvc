@@ -7,7 +7,7 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
 ?>
 <div class="grid">
     <div class="grid__row product-detail">
-        <img src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $bookFind['Image'] ?>" alt="" class="product-detail-img">
+        <img src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $bookFind['Image'] ?>" alt="" class="product-detail-img">
         <div class="product-detail-infor">
             <h1 class="" style="font-size: 24px;"><?php echo $bookFind['Title'] ?>-<?php echo $bookFind['AuthorName'] ?></h1>
             <div class="product-detail-name" style="display: flex; margin: 8px 0;">

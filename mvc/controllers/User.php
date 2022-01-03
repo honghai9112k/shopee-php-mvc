@@ -12,17 +12,17 @@ class User extends Controller
     // bookstore-mvc/User
     function Purchase()
     {
-        $addressDao = $this->dao("AddressDao");
-        $bookItemDao = $this->dao("BookItemDao");
+        $addressDao = $this->logicAddress("Address_Implement");
+        $bookItemDao = $this->logicBookItem("BookItem_Implement");
         $address = $addressDao->GetAllAddress();
-        $bookDao = $this->dao("BookDao");
+        $bookDao = $this->logicBook("Book_Implement");
         $allBook = $bookItemDao->getAllBookJoin();
         $bookCategory = $bookDao->GetAllBookCategory();
 
-        $cartDao = $this->dao("CartDao");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
 
-        $orderDao = $this->dao("OrderDao");
+        $orderDao = $this->logicOrder("Order_Implement");
         $order = $orderDao->GetAllOrder();
 
         $this->view("userHome", [

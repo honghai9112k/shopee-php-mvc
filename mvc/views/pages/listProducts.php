@@ -78,7 +78,7 @@ $bookCateId = (isset($cateId)) ? $cateId : 0;
                             <?php }
                             ?>
                             <a class="home-product-item" href="http://localhost/bookstore-mvc/Product/Show/<?php echo $value["Id_book"] ?>">
-                                <img src="http://localhost/bookstore-mvc/public/asset/img/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
+                                <img src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
                                 <h4 class="home-product-item__name"><?php echo $value["Title"] ?></h4>
                                 <div class="home-product-item__price">
                                     <span class="home-product-item__price-old"><?php echo $value["Price"] ?> ₫</span>

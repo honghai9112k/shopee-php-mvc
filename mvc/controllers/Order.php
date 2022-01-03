@@ -12,10 +12,10 @@ class Order extends Controller
     // bookstore-mvc/Cart
     function SayHi()
     {
-        $addressDao = $this->dao("AddressDao");
-        $bookDao = $this->dao("BookDao");
-        $bookItemDao = $this->dao("BookItemDao");
-        $cartDao = $this->dao("CartDao");
+        $addressDao = $this->logicAddress("Address_Implement");
+        $bookDao = $this->logicBook("Book_Implement");
+        $bookItemDao = $this->logicBookItem("BookItem_Implement");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
 
 
@@ -23,7 +23,7 @@ class Order extends Controller
         $bookCategory = $bookDao->GetAllBookCategory();
         $allBook = $bookItemDao->getAllBookJoin();
 
-        $shipmentDao = $this->dao("ShipmentDao");
+        $shipmentDao = $this->logicOrder("Shipment_Implement");
         $shipmentSession = $shipmentDao->GetShipmentByAdress($_SESSION['user']['AddressId']);
         // Call Views
         $this->view("home-masterLayout", [
@@ -41,9 +41,9 @@ class Order extends Controller
     }
     function CreateOrder()
     {
-        $cartDao = $this->dao('CartDao');
-        $shipmentDao = $this->dao('ShipmentDao');
-        $orderDao = $this->dao('OrderDao');
+        $cartDao = $this->logicCart("Cart_Implement");
+        $shipmentDao = $this->logicOrder("Shipment_Implement");
+        $orderDao = $this->logicOrder("Order_Implement");
 
         if (isset($_POST['orderButton'])) {
             $Id_payment = $_POST['radioPayment'];
@@ -66,7 +66,7 @@ class Order extends Controller
         }
     }
     public function DeleteOrder ($Id_order) {
-        $orderDao = $this->dao("OrderDao");
+        $orderDao = $this->logicOrder("Order_Implement");
         $check = $orderDao->DeleteOrder($Id_order);
         if ($check) {
             header('location: http://localhost/bookstore-mvc/User/Purchase');

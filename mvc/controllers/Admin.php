@@ -12,13 +12,13 @@ class Admin extends Controller
     // bookstore-mvc/Admin
     function SayHi()
     {
-        $addressDao = $this->dao("AddressDao");
-        $bookItemDao = $this->dao("BookItemDao");
+        $addressDao = $this->logicAddress("Address_Implement");
+        $bookItemDao = $this->logicBookItem("BookItem_Implement");
         $address = $addressDao->GetAllAddress();
-        $bookDao = $this->dao("BookDao");
+        $bookDao = $this->logicBook("Book_Implement");
         $allBook = $bookItemDao->getAllBookJoin();
         $bookCategory = $bookDao->GetAllBookCategory();
-        $cartDao = $this->dao("CartDao");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
 
         if (empty($_SESSION['user'])) {
@@ -41,12 +41,12 @@ class Admin extends Controller
     }
     function AddProductView()
     {
-        $bookDao = $this->dao("BookDao");
+        $bookDao = $this->logicBook("Book_Implement");
         $author = $bookDao->GetAllAuthor();
         $publisher = $bookDao->GetAllPublisher();
         $bookCategory = $bookDao->GetAllBookCategory();
         $author = $bookDao->GetAllAuthor();
-        $cartDao = $this->dao("CartDao");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
 
         $this->view("adminHome", [
@@ -73,13 +73,12 @@ class Admin extends Controller
             $price = $_POST['price'];
             $barcode = $_POST['barcode'];
             $discount = $_POST['discount'];
-            $image = $_POST['image'];
             $description = $_POST['description'];
 
             if (isset($_FILES['image'])) {
                 $file = $_FILES['image'];
                 $file_name = $file['name'];
-                move_uploaded_file($file['tmp_name'], './public/asset/img/' . $file_name);
+                move_uploaded_file($file['tmp_name'], './public/asset/book-imgs/' . $file_name);
             }
 
             if (empty($bookCategoryId)) {
@@ -109,7 +108,7 @@ class Admin extends Controller
                 );
                 $newBookItem = new BookItemModel('', '', $price, $barcode, $discount, $file_name, $description);
 
-                $bookDao = $this->dao("BookDao");
+                $bookDao = $this->logicBook("Book_Implement");
                 $check = $bookDao->createBook($newBook, $newBookItem, $authorId);
                 if ($check) {
                     header('location: http://localhost/bookstore-mvc/Admin');
@@ -128,8 +127,8 @@ class Admin extends Controller
     function DeleteProduct($Id_book)
     {
         $err = [];
-        $bookItemDao = $this->dao("BookItemDao");
-        $bookDao = $this->dao("BookDao");
+        $bookItemDao = $this->logicBookItem("BookItem_Implement");
+        $bookDao = $this->logicBook("Book_Implement");
 
         $checkBookItem = $bookItemDao->DeleteBookItem($Id_book);
         if ($checkBookItem) {
@@ -151,12 +150,12 @@ class Admin extends Controller
     }
     function UpdateProductView($Id_book)
     {
-        $bookDao = $this->dao("BookDao");
+        $bookDao = $this->logicBook("Book_Implement");
         $author = $bookDao->GetAllAuthor();
         $publisher = $bookDao->GetAllPublisher();
         $bookCategory = $bookDao->GetAllBookCategory();
         $author = $bookDao->GetAllAuthor();
-        $cartDao = $this->dao("CartDao");
+        $cartDao = $this->logicCart("Cart_Implement");
         $cart = $cartDao->GetCart();
         
         $book = $bookDao->findBookById($Id_book);
@@ -186,13 +185,12 @@ class Admin extends Controller
             $price = $_POST['price'];
             $barcode = $_POST['barcode'];
             $discount = $_POST['discount'];
-            $image = $_POST['image'];
             $description = $_POST['description'];
 
-            if (isset($_FILES['image'])) {
-                $file = $_FILES['image'];
+            if (isset($_FILES['imageUp'])) {
+                $file = $_FILES['imageUp'];
                 $file_name = $file['name'];
-                move_uploaded_file($file['tmp_name'], './public/asset/img/' . $file_name);
+                move_uploaded_file($file['tmp_name'], './public/asset/book-imgs/' . $file_name);
             }
 
             if (empty($bookCategoryId)) {
@@ -222,7 +220,7 @@ class Admin extends Controller
                 );
                 $newBookItem = new BookItemModel('', $Id_book, $price, $barcode, $discount, $file_name, $description);
 
-                $bookDao = $this->dao("BookDao");
+                $bookDao = $this->logicBook("Book_Implement");
                 $check = $bookDao->UpdateBook($newBook, $newBookItem, $authorId);
                 if ($check) {
                     header('location: http://localhost/bookstore-mvc/Admin');
