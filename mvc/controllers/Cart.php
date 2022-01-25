@@ -4,12 +4,12 @@ require_once "./mvc/models/AccountModel.php";
 require_once "./mvc/models/AddressModel.php";
 require_once "./mvc/models/BookModel.php";
 require_once "./mvc/models/BookItemModel.php";
-// http://localhost/bookstore-mvc/Cart
-// http://localhost/bookstore-mvc/Cart
+// http://localhost/shopee-php-mvc-dao/Cart
+// http://localhost/shopee-php-mvc-dao/Cart
 
 class Cart extends Controller
 {
-    // bookstore-mvc/Cart
+    // shopee-php-mvc-dao/Cart
     function SayHi()
     {
         $addressDao = $this->logicAddress("Address_Implement");
@@ -44,12 +44,12 @@ class Cart extends Controller
             if ($check) {
                 $bookItemDao = $this->logicBookItem("BookItem_Implement");
                 $bookId = $bookItemDao->GetBookByIdBookItem($id_bookItem)["Id_book"];
-                header('location: http://localhost/bookstore-mvc/Product/Show/' . $bookId . '');
+                header('location: http://localhost/shopee-php-mvc-dao/Product/Show/' . $bookId . '');
             } else {
                 $this->view("404Page", []);
             }
         } else {
-            // header('location: http://localhost/bookstore-mvc/Error');
+            // header('location: http://localhost/shopee-php-mvc-dao/Error');
             $this->view("404Page", []);
         }
     }
@@ -58,7 +58,7 @@ class Cart extends Controller
         $cartDao = $this->logicCart("Cart_Implement");
         $check = $cartDao->DeleteAllCart();
         if ($check) {
-            header('location: http://localhost/bookstore-mvc/Home');
+            header('location: http://localhost/shopee-php-mvc-dao/Home');
         } else {
             $this->view("404Page", []);
         }
@@ -68,7 +68,7 @@ class Cart extends Controller
         $cartDao = $this->logicCart("Cart_Implement");
         $check = $cartDao->DeleteCartByIdBookItem($BookItemId);
         if ($check) {
-            header('location: http://localhost/bookstore-mvc/Cart');
+            header('location: http://localhost/shopee-php-mvc-dao/Cart');
         } else {
             $this->view("404Page", []);
         }

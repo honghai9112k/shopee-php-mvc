@@ -21,7 +21,7 @@ if (isset($_SESSION["cart"])) {
             <span class="header__cart-notice countItemCart" id="">0</span>
             <div class="header__cart-list" style="cursor: pointer">
                 <div>
-                    <img src="http://localhost/bookstore-mvc/public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
+                    <img src="http://localhost/shopee-php-mvc-dao/public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
                     <p class="header__cart-list--no-cart-msg">
                         Chưa có sản phẩm
                     </p>
@@ -39,7 +39,7 @@ if (isset($_SESSION["cart"])) {
                     <?php
                     foreach ($cart as $key => $value) { ?>
                         <li class="header__cart-item">
-                            <img src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="" class="header__cart-img">
+                            <img src="http://localhost/shopee-php-mvc-dao/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="" class="header__cart-img">
                             <div class="header__cart-item-info">
                                 <div class="header__cart-item-head">
                                     <h5 class="header__cart-item-name"><?php echo $value["Title"]; ?></h5>
@@ -55,7 +55,7 @@ if (isset($_SESSION["cart"])) {
                     ?>
                 </ul>
                 <button class="btn btn--primary header__cart-has-cart-button">
-                    <a href="http://localhost/bookstore-mvc/Cart" style="text-decoration: none !important; color:#fff;">
+                    <a href="http://localhost/shopee-php-mvc-dao/Cart" style="text-decoration: none !important; color:#fff;">
                         Xem Giỏ Hàng
                     </a>
                 </button>
@@ -67,7 +67,7 @@ if (isset($_SESSION["cart"])) {
             <span class="header__cart-notice countItemCart" id="">0</span>
             <div class="header__cart-list" style="cursor: pointer">
                 <div>
-                    <img src="http://localhost/bookstore-mvc/public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
+                    <img src="http://localhost/shopee-php-mvc-dao/public/asset/img/no_cart.png" alt="" class="header__cart--no-cart-img">
                     <p class="header__cart-list--no-cart-msg">
                         Chưa có sản phẩm
                     </p>

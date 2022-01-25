@@ -31,7 +31,7 @@ class Customer_Implement extends DB implements CustomerDao{
             $rs =  mysqli_query($this->con, $qr_account);
             if ($rs) {
                 $result = true;
-                header('location: http://localhost/bookstore-mvc/Home');
+                header('location: http://localhost/shopee-php-mvc-dao/Home');
             }
         }
         return json_encode($result);

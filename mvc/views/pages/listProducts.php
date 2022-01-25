@@ -72,13 +72,13 @@ $bookCateId = (isset($cateId)) ? $cateId : 0;
                             <?php
                             if (isset($data["isAdmin"])) { ?>
                                 <div>
-                                    <a href="http://localhost/bookstore-mvc/Admin/DeleteProduct/<?php echo $value["Id_book"] ?>" class="deleteBtn">Xóa <i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <a href="http://localhost/bookstore-mvc/Admin/UpdateProductView/<?php echo $value["Id_book"] ?>" class="updateBtn">Sửa <i class="fa fa-wrench" aria-hidden="true"></i></a>
+                                    <a href="http://localhost/shopee-php-mvc-dao/Admin/DeleteProduct/<?php echo $value["Id_book"] ?>" class="deleteBtn">Xóa <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a href="http://localhost/shopee-php-mvc-dao/Admin/UpdateProductView/<?php echo $value["Id_book"] ?>" class="updateBtn">Sửa <i class="fa fa-wrench" aria-hidden="true"></i></a>
                                 </div>
                             <?php }
                             ?>
-                            <a class="home-product-item" href="http://localhost/bookstore-mvc/Product/Show/<?php echo $value["Id_book"] ?>">
-                                <img src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
+                            <a class="home-product-item" href="http://localhost/shopee-php-mvc-dao/Product/Show/<?php echo $value["Id_book"] ?>">
+                                <img src="http://localhost/shopee-php-mvc-dao/public/asset/book-imgs/<?php echo $value['Image'] ?>" alt="" class="home-product-item__img">
                                 <h4 class="home-product-item__name"><?php echo $value["Title"] ?></h4>
                                 <div class="home-product-item__price">
                                     <span class="home-product-item__price-old"><?php echo $value["Price"] ?> ₫</span>

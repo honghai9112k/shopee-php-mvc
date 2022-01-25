@@ -1,10 +1,10 @@
 <?php
-// http://localhost/bookstore-mvc/Admin
-// http://localhost/bookstore-mvc/Product/Id?
+// http://localhost/shopee-php-mvc-dao/Admin
+// http://localhost/shopee-php-mvc-dao/Product/Id?
 
 class Product extends Controller
 {
-    // bookstore-mvc/Product
+    // shopee-php-mvc-dao/Product
     function SayHi()
     {
         $addressDao = $this->logicAddress("Address_Implement");

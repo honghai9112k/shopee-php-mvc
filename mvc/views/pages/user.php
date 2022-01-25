@@ -8,7 +8,7 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
 
 if (isset($user["Username"])) { ?>
     <li>
-        <a href="http://localhost/bookstore-mvc/User/Purchase" style="text-decoration: none !important; color:#fff;">
+        <a href="http://localhost/shopee-php-mvc-dao/User/Purchase" style="text-decoration: none !important; color:#fff;">
             <div class="user">
                 <div class="header__navbar-item header__navbar-user">
                     <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="" class="header__navbar-user-img">
@@ -21,7 +21,7 @@ if (isset($user["Username"])) { ?>
                             <a href="">Đơn mua</a>
                         </li>
                         <li class="header__navbar-user-item" style="color: #666;">
-                            <a href="http://localhost/bookstore-mvc/Home/Logout">Đăng xuất</a>
+                            <a href="http://localhost/shopee-php-mvc-dao/Home/Logout">Đăng xuất</a>
                         </li>
                     </ul>
                 </div>
@@ -121,7 +121,7 @@ if (isset($user["Username"])) { ?>
 <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form class="auth-form active" id="loginForm" method="POST" role="form" action="http://localhost/bookstore-mvc/Home/LoginAccount">
+            <form class="auth-form active" id="loginForm" method="POST" role="form" action="http://localhost/shopee-php-mvc-dao/Home/LoginAccount">
                 <div class="auth-form__container" style="margin-top: 25px;">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Đăng nhập</h3>

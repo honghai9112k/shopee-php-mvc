@@ -55,7 +55,7 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
         foreach ($cart as $key => $value) {
             $priceDiscount = $value["Price"] * (100 - $value["Discount"]) / 100; ?>
             <div class="cart-item">
-                <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="">
+                <img class="cart-item-img" src="http://localhost/shopee-php-mvc-dao/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="">
                 <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
                 <div class="cart-item-price">
                     <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
@@ -80,7 +80,7 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
                     <?php echo ($value["Amount"] * $priceDiscount); ?> ₫
                 </p>
                 <div class="cart-item-delete">
-                    <a href="http://localhost/bookstore-mvc/Cart/DeleteCartByIdBookItem/<?php echo $value["Id_bookItem"]; ?>">
+                    <a href="http://localhost/shopee-php-mvc-dao/Cart/DeleteCartByIdBookItem/<?php echo $value["Id_bookItem"]; ?>">
                         <i class="fas fa-trash cart-item-delete-icon"></i>
                     </a>
                 </div>
@@ -125,12 +125,12 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
     </div>
     <div class="row3">
         <a class="linkcart" href="">Chọn tất cả()</span></a>
-        <a class="linkcart" href=" http://localhost/bookstore-mvc/Cart/DeleteAllCart">Xóa</a>
+        <a class="linkcart" href=" http://localhost/shopee-php-mvc-dao/Cart/DeleteAllCart">Xóa</a>
         <a class="linkcart" href="">Bỏ sản phẩm không hoạt động</a>
         <a class="linkcart" href="" style="color: #ee4d2d">Lưu vào mục Đã thích</a>
         <span>Tổng thanh toán: đ</span>
         <button class="btn btn--primary orderbtnCart" onclick="handerOrderBtn( <?php echo $checkUser; ?>)">
-        <!-- <a href="http://localhost/bookstore-mvc/Order" class="link-white"> -->
+        <!-- <a href="http://localhost/shopee-php-mvc-dao/Order" class="link-white"> -->
             Mua Hàng
         <!-- </a>     -->
         </button>

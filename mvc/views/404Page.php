@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/bookstore-mvc/public/asset/fonts/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/bookstore-mvc/public/asset/css/base.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/bookstore-mvc/public/asset/css/main.css">
+    <link rel="stylesheet" href="http://localhost/shopee-php-mvc-dao/public/asset/fonts/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/shopee-php-mvc-dao/public/asset/css/base.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/shopee-php-mvc-dao/public/asset/css/main.css">
 </head>
 
 <body>
@@ -171,7 +171,7 @@
             </div>
             <div style="text-align: center;">
                 <button class="btn btn--primary">
-                    <a href="http://localhost/bookstore-mvc/Home" style="text-decoration: none; color:#fff;">Thử lại</a>
+                    <a href="http://localhost/shopee-php-mvc-dao/Home" style="text-decoration: none; color:#fff;">Thử lại</a>
                 </button>
             </div>
         </div>

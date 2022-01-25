@@ -4,12 +4,12 @@ require_once "./mvc/models/AccountModel.php";
 require_once "./mvc/models/AddressModel.php";
 require_once "./mvc/models/BookModel.php";
 require_once "./mvc/models/BookItemModel.php";
-// http://localhost/bookstore-mvc/Admin
-// http://localhost/bookstore-mvc/Admin/AddProductView
+// http://localhost/shopee-php-mvc-dao/Admin
+// http://localhost/shopee-php-mvc-dao/Admin/AddProductView
 
 class Admin extends Controller
 {
-    // bookstore-mvc/Admin
+    // shopee-php-mvc-dao/Admin
     function SayHi()
     {
         $addressDao = $this->logicAddress("Address_Implement");
@@ -111,7 +111,7 @@ class Admin extends Controller
                 $bookDao = $this->logicBook("Book_Implement");
                 $check = $bookDao->createBook($newBook, $newBookItem, $authorId);
                 if ($check) {
-                    header('location: http://localhost/bookstore-mvc/Admin');
+                    header('location: http://localhost/shopee-php-mvc-dao/Admin');
                 } else {
                     $this->view("404Page", [
                         "Err" => $err
@@ -134,7 +134,7 @@ class Admin extends Controller
         if ($checkBookItem) {
             $checkBook = $bookDao->DeleteBook($Id_book);
             if ($checkBook) {
-                header('location: http://localhost/bookstore-mvc/Admin');
+                header('location: http://localhost/shopee-php-mvc-dao/Admin');
             } else {
                 $err["checkBook"] = "Không xóa được sách này";
                 $this->view("404Page", [
@@ -223,7 +223,7 @@ class Admin extends Controller
                 $bookDao = $this->logicBook("Book_Implement");
                 $check = $bookDao->UpdateBook($newBook, $newBookItem, $authorId);
                 if ($check) {
-                    header('location: http://localhost/bookstore-mvc/Admin');
+                    header('location: http://localhost/shopee-php-mvc-dao/Admin');
                 } else {
                     $this->view("404Page", [
                         "Err" => $err

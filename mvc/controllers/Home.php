@@ -4,13 +4,13 @@ require_once "./mvc/models/AccountModel.php";
 require_once "./mvc/models/AddressModel.php";
 require_once "./mvc/models/CartModel.php";
 require_once "./mvc/models/CartBookItemModel.php";
-// http://localhost/bookstore-mvc/Home/Show/1/2
-// http://localhost/bookstore-mvc/Home
+// http://localhost/shopee-php-mvc-dao/Home/Show/1/2
+// http://localhost/shopee-php-mvc-dao/Home
 
 class Home extends Controller
 {
 
-    // bookstore-mvc/Home
+    // shopee-php-mvc-dao/Home
     function SayHi()
     {
         $addressDao = $this->logicAddress("Address_Implement");
@@ -110,7 +110,7 @@ class Home extends Controller
                 $userCheck = $customerDao->Login($accLogin);
                 // $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
                 if (!isset($userCheck["faultPass"]) && !isset($userCheck["faultUsername"])) {
-                    header('location: http://localhost/bookstore-mvc/Home');
+                    header('location: http://localhost/shopee-php-mvc-dao/Home');
                 } else {
                     $this->view("404Page", [
                         "Err" => $err,
@@ -129,7 +129,7 @@ class Home extends Controller
     public function Logout()
     {
         unset($_SESSION['user']);
-        header('location: http://localhost/bookstore-mvc/Home');
+        header('location: http://localhost/shopee-php-mvc-dao/Home');
     }
     // Cập nhật info tài khoản
     public function UpdateAccount()
@@ -146,7 +146,7 @@ class Home extends Controller
 
             $check = $customerDao->UpdateAccount($customer);
             if ($check) {
-                header('location: http://localhost/bookstore-mvc/Home');
+                header('location: http://localhost/shopee-php-mvc-dao/Home');
             } else {
                 $this->view("404Page", []);
             }

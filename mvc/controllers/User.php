@@ -4,12 +4,12 @@ require_once "./mvc/models/AccountModel.php";
 require_once "./mvc/models/AddressModel.php";
 require_once "./mvc/models/BookModel.php";
 require_once "./mvc/models/BookItemModel.php";
-// http://localhost/bookstore-mvc/
-// http://localhost/bookstore-mvc/User/purchase
+// http://localhost/shopee-php-mvc-dao/
+// http://localhost/shopee-php-mvc-dao/User/purchase
 
 class User extends Controller
 {
-    // bookstore-mvc/User
+    // shopee-php-mvc-dao/User
     function Purchase()
     {
         $addressDao = $this->logicAddress("Address_Implement");

@@ -7,7 +7,7 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
 ?>
 <div class="grid">
     <div class="grid__row product-detail">
-        <img src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $bookFind['Image'] ?>" alt="" class="product-detail-img">
+        <img src="http://localhost/shopee-php-mvc-dao/public/asset/book-imgs/<?php echo $bookFind['Image'] ?>" alt="" class="product-detail-img">
         <div class="product-detail-infor">
             <h1 class="" style="font-size: 24px;"><?php echo $bookFind['Title'] ?>-<?php echo $bookFind['AuthorName'] ?></h1>
             <div class="product-detail-name" style="display: flex; margin: 8px 0;">
@@ -72,7 +72,7 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
                     </div>
                 </div>
             </div>
-            <form role="form" method="POST" id="addCartForm" action="http://localhost/bookstore-mvc/Cart/AddItemToCart/<?php echo $bookFind['Id_bookItem']; ?>">
+            <form role="form" method="POST" id="addCartForm" action="http://localhost/shopee-php-mvc-dao/Cart/AddItemToCart/<?php echo $bookFind['Id_bookItem']; ?>">
                 <div class="addressProduct input-group-lg">
                     <label for="Amount" style="width:auto;font-size: 16px; color: #888;">Số lượng: </label>
                     <button class="btn addLeftBtn"><i class="fa fa-minus" aria-hidden="true"></i></button>
@@ -193,7 +193,7 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
 <!-- <script>
     $(document).ready(function () {
     $("#addCartBtn").click(function () {
-        $.post("http://localhost/bookstore-mvc/mvc/controllers/Ajax/addCart", {}, function (data1) {
+        $.post("http://localhost/shopee-php-mvc-dao/mvc/controllers/Ajax/addCart", {}, function (data1) {
             $(".checkorder").html(data1);
         })
     });

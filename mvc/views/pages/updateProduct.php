@@ -8,7 +8,7 @@ $allAuthor = $data["Author"];
 $bookFind = $data["Book"];
 ?>
 <div class="cart" style="font-size: 12px !important; color:black;">
-    <form role="form" method="POST" id="updateBookForm" action="http://localhost/bookstore-mvc/Admin/UpdateProduct/<?php echo $bookFind["Id_book"]; ?>" enctype="multipart/form-data">
+    <form role="form" method="POST" id="updateBookForm" action="http://localhost/shopee-php-mvc-dao/Admin/UpdateProduct/<?php echo $bookFind["Id_book"]; ?>" enctype="multipart/form-data">
         <div class="mb-4 input-group-lg">
             <label for="title" class="form-label">Tên sản phẩm(Sách): </label>
             <input type="text" class="form-control" id="title" aria-describedby="emailHelp" name="title" value="<?php echo $bookFind["Title"]; ?>">

@@ -60,7 +60,7 @@ function handerOrderBtn(checkUser) {
     if (checkUser == 0) {
         alert("Vui lòng đăng nhập.!!!")
     } else {
-        window.location.href = "http://localhost/bookstore-mvc/Order";
+        window.location.href = "http://localhost/shopee-php-mvc-dao/Order";
     }
 }
 // Reload price shipment khi thay đổi address

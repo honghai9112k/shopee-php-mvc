@@ -71,7 +71,7 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                 $sumOderNotShip = $sumOderNotShip + $sumMoney;
             ?>
                 <div class="cart-item">
-                    <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="">
+                    <img class="cart-item-img" src="http://localhost/shopee-php-mvc-dao/public/asset/book-imgs/<?php echo $value["Image"]; ?>" alt="">
                     <p class="cart-item-name"><?php echo $value["Title"]; ?></p>
                     <div class="cart-item-price">
                         <p class="cart-item-price-old"><?php echo $value["Price"]; ?> ₫</p>
@@ -97,7 +97,7 @@ $allAddress = (isset($_SESSION['address'])) ? $_SESSION['address'] : [];
                         <?php echo ($sumMoney); ?>
                     </p>
                     <div class="cart-item-delete">
-                        <a href="http://localhost/bookstore-mvc/Cart/DeleteCartByIdBookItem/<?php echo $value["Id_bookItem"]; ?>">
+                        <a href="http://localhost/shopee-php-mvc-dao/Cart/DeleteCartByIdBookItem/<?php echo $value["Id_bookItem"]; ?>">
                             <i class="fas fa-trash cart-item-delete-icon"></i>
                         </a>
                     </div>

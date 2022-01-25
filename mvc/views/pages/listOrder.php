@@ -84,7 +84,7 @@ $id_order = 0;
                                 </div>
                                 <div class="item-order">
                                     <div class="imgOrder-container">
-                                        <img class="cart-item-img" src="http://localhost/bookstore-mvc/public/asset/book-imgs/<?php echo $value['Image']; ?>" alt="">
+                                        <img class="cart-item-img" src="http://localhost/shopee-php-mvc-dao/public/asset/book-imgs/<?php echo $value['Image']; ?>" alt="">
                                         <div class="detail-item-order">
                                             <p class="headerItemText"><?php echo 'Sách ' . $value['Title'] . ''; ?></p>
                                             <p style="font-size: 12px;color: rgba(0,0,0,.54);"><?php echo $value['NameCate']; ?> </p>
@@ -132,7 +132,7 @@ $id_order = 0;
                             <div class="d-flex last-row-order" style="background-color: #fff; background-color: #fff;justify-content: center;margin:0;">
                                 <div>
                                     <button class="btn btn--primary">
-                                        <a href="http://localhost/bookstore-mvc/Order/DeleteOrder/<?php echo $id_order ?>" class="dis-a" style="padding: 20px 16px;text-decoration: none !important;    color: #fff !important;">
+                                        <a href="http://localhost/shopee-php-mvc-dao/Order/DeleteOrder/<?php echo $id_order ?>" class="dis-a" style="padding: 20px 16px;text-decoration: none !important;    color: #fff !important;">
                                             Xóa hết đơn hàng
                                         </a>
                                     </button>

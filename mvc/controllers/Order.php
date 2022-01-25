@@ -4,12 +4,12 @@ require_once "./mvc/models/AccountModel.php";
 require_once "./mvc/models/AddressModel.php";
 require_once "./mvc/models/BookModel.php";
 require_once "./mvc/models/BookItemModel.php";
-// http://localhost/bookstore-mvc/Cart
-// http://localhost/bookstore-mvc/Cart
+// http://localhost/shopee-php-mvc-dao/Cart
+// http://localhost/shopee-php-mvc-dao/Cart
 
 class Order extends Controller
 {
-    // bookstore-mvc/Cart
+    // shopee-php-mvc-dao/Cart
     function SayHi()
     {
         $addressDao = $this->logicAddress("Address_Implement");
@@ -59,7 +59,7 @@ class Order extends Controller
             $newOrder = new OrderModel('', $Id_payment, $ShipmentId, $CustomerId, $CartId, $TotalPrice, $Status, $DeliveryDate);
             $check = $orderDao->CreateOrder($newOrder);
             if ($check) {
-                header('location: http://localhost/bookstore-mvc/User/Purchase');
+                header('location: http://localhost/shopee-php-mvc-dao/User/Purchase');
             } else {
                 $this->view("404Page", []);
             }
@@ -69,7 +69,7 @@ class Order extends Controller
         $orderDao = $this->logicOrder("Order_Implement");
         $check = $orderDao->DeleteOrder($Id_order);
         if ($check) {
-            header('location: http://localhost/bookstore-mvc/User/Purchase');
+            header('location: http://localhost/shopee-php-mvc-dao/User/Purchase');
         } else {
             $this->view("404Page", []);
         }
